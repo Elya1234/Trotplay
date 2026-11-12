@@ -18,7 +18,7 @@ body{background:var(--bg);color:var(--txt);height:100dvh;display:flex;flex-direc
 .main{display:flex;flex:1;min-height:0;position:relative}
 .dock{width:56px;border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;padding:4px 0;flex-shrink:0}
 .ico{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;border:none;color:#fff;cursor:pointer;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.25)}
-.ico:active,.act-btn:active,.mbtn:active{transform:scale(.94)}
+.ico:active,.act-btn:active{transform:scale(.94)}
 .grid{flex:1;display:grid;grid-template-columns:1.5fr 1fr;gap:8px;padding:8px;min-height:0}
 .mapbox{position:relative;border-radius:20px;overflow:hidden;background:#111;display:flex;flex-direction:column}
 .nav-bar{position:absolute;top:8px;left:8px;right:8px;z-index:15;display:flex;gap:6px}
@@ -29,8 +29,6 @@ iframe{width:100%;height:100%;border:none;filter:var(--mapf)}
 .col{display:flex;flex-direction:column;gap:8px;min-height:0}
 .card{flex:1;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;min-height:0;position:relative}
 .spd{font-size:52px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
-.mbtn{color:var(--txt);width:38px;height:38px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;border:none}
-.tag{background:#3b82f6;color:#fff;padding:4px 7px;border-radius:8px;font-size:10px;font-weight:700;border:none;cursor:pointer;text-decoration:none}
 .bot{height:94px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1.8fr 1fr;gap:8px;padding:8px;flex-shrink:0}
 .act-btn{border-radius:16px;color:var(--txt);font-size:13px;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;text-decoration:none}
 .mini-retro{position:relative;background:#000;border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer}
@@ -41,13 +39,8 @@ iframe{width:100%;height:100%;border:none;filter:var(--mapf)}
 .s-row{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,.08);font-size:13px;font-weight:700;color:#fff}
 .s-row.past{opacity:.4;text-decoration:line-through}
 .s-row.next{background:rgba(16,185,129,.22);border:1px solid #10b981}
-.alha-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0;flex:1;overflow-y:auto}
-.alha-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;text-decoration:none;gap:4px}
-.alha-card span:first-child{font-size:15px;font-weight:800;color:#fbbf24}
-.alha-card span:last-child{font-size:11px;color:#cbd5e1}
 select{width:100%;padding:8px;border-radius:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:12px;font-weight:700;outline:none}
 select option, optgroup{background:#0f172a;color:#fff}
-input[type=range]{width:100%;accent-color:#3b82f6;height:5px}
 .ctrl-btn{padding:5px 10px;border-radius:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:700;cursor:pointer}
 .ctrl-btn.active{background:#3b82f6;border-color:#60a5fa}
 .badge{padding:2px 7px;border-radius:6px;font-size:11px;font-weight:900;margin-right:6px;display:inline-block}
@@ -63,8 +56,7 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:5px}
 </style>
 </head>
 <body>
-
-<div class="top glass">
+  <div class="top glass">
   <div class="pill glass" onclick="toggleSim()"><div class="dot" id="d"></div><span id="gs">GPS</span></div>
   <div class="pill glass" onclick="toggleBluetooth()" style="color:#38bdf8;border-color:rgba(56,189,248,.4)"><div class="dot" id="bt-dot" style="background:#ef4444"></div><span id="bt-txt">Scooter BT</span></div>
   <div class="pill glass" onclick="openMod('m-zman')" style="color:#34d399;border-color:rgba(52,211,153,.4)">✡️ <span id="top-z">Calcul...</span></div>
@@ -73,7 +65,7 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:5px}
 </div>
 
 <div class="main">
-  <!-- MODALE ZMANIM & SHABBAT COMPLETS -->
+  <!-- MODALE ZMANIM & SHABBAT -->
   <div id="m-zman" class="modal glass">
     <div style="display:flex;justify-content:space-between;align-items:center">
       <span style="font-size:15px;font-weight:800">✡️ Zmanim, Shabbat & Fêtes</span>
@@ -84,7 +76,7 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:5px}
     <a href="shortcuts://run-shortcut?name=CalJ" style="background:#2563eb;color:#fff;text-align:center;padding:10px;border-radius:12px;text-decoration:none;font-weight:700;font-size:13px">Ouvrir l'application CalJ</a>
   </div>
 
-  <!-- MODALE TRANSPORTS IDF COMPLÈTE -->
+  <!-- MODALE TRANSPORTS IDF -->
   <div id="m-navigo" class="modal glass">
     <div style="display:flex;justify-content:space-between;align-items:center">
       <span style="font-size:15px;font-weight:800;color:#38bdf8">🚆 Transports IDF (SNCF / RATP)</span>
@@ -149,15 +141,17 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:5px}
     </div>
   </div>
 
-  <!-- MODALE PRIÈRE -->
+  <!-- MODALE TEFILAT HADERECH -->
   <div id="m-tora" class="modal glass">
     <div style="display:flex;justify-content:space-between;align-items:center">
       <span style="font-size:15px;font-weight:800">📖 Tefilat HaDerech</span>
       <button onclick="closeMod()" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:12px">Fermer</button>
     </div>
-    <div class="s-list">
-      <div style="font-size:15px;line-height:1.6;text-align:right;direction:rtl;padding:10px;background:rgba(255,255,255,.08);border-radius:12px">יְהִי רָצוֹן מִלְּפָנֶיךָ ה' אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ שֶׁתּוֹלִיכֵנוּ לְשָׁלוֹם וְתַצְעִידֵנוּ לְשָׁלוֹם וְתַדְרִיכֵנוּ לְשָׁלוֹם וְתַגִּיעֵנוּ לִמְחוֹז חֶפְצֵנוּ לְחַיִּים וּלְשִׂמְחָה וּלְשָׁלוֹם, וְתַצִּילֵנוּ מִכַּף כָּל אוֹיֵב וְאוֹרֵב בַּדֶּרֶךְ, בָּרוּךְ אַתָּה ה' שׁוֹמֵעַ תְּפִלָּה.</div>
+    <div class="s-list" style="gap:10px;">
+      <div style="font-size:15px;line-height:1.6;text-align:right;direction:rtl;padding:12px;background:rgba(255,255,255,.08);border-radius:12px">יְהִי רָצוֹן מִלְּפָנֶיךָ ה' אֱלֹהֵינוּ وֵאלֹהֵי אֲבוֹתֵינוּ שֶׁתּוֹלִיכֵנוּ לְשָׁלוֹם וְתַצְעִידֵנוּ לְשָׁלוֹם וְתַדְרִיכֵנוּ לְשָׁלוֹם וְתַגִּיעֵנוּ לִמְחוֹז חֶפְצֵנוּ לְחַיִּים וּלְשִׂמְחָה וּלְשָׁלוֹם, וְתַצִּילֵנוּ מִכַּף כָּל אוֹיֵב וְאוֹרֵב בַּדֶּרֶךְ, בָּרוּךְ אַתָּה ה' שׁוֹמֵעַ תְּפִלָּה.</div>
+      <div style="font-size:13px;line-height:1.5;color:#cbd5e1;padding:10px;background:rgba(255,255,255,.04);border-radius:12px;font-style:italic">« Que ce soit Ta volonté, Éternel notre Dieu, de nous conduire en paix, de guider nos pas en paix et de nous faire arriver à destination en vie, dans la joie et la paix. Béni sois-Tu Éternel qui écoutes la prière. »</div>
     </div>
+    <a href="shortcuts://run-shortcut?name=CalJ" style="background:#dc2626;color:#fff;text-align:center;padding:10px;border-radius:12px;text-decoration:none;font-weight:700;font-size:13px">ובלכתך בדרך Ouvrir l'app</a>
   </div>
 
   <!-- MODALE ALHATORAH -->
@@ -166,25 +160,24 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:5px}
       <span style="font-size:15px;font-weight:800;color:#fbbf24">📜 AlHaTorah.org</span>
       <button onclick="closeMod()" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:12px">Fermer</button>
     </div>
-    <div class="alha-grid">
-      <a href="https://mg.alhatorah.org/Weekly" target="_blank" class="alha-card"><span>פרשת השבוע</span><span>Parasha</span></a>
-      <a href="https://shas.alhatorah.org/" target="_blank" class="alha-card"><span>ש״ס</span><span>Talmud</span></a>
-      <a href="https://rambam.alhatorah.org/" target="_blank" class="alha-card"><span>רמב״ם</span><span>Rambam</span></a>
-      <a href="https://siddur.alhatorah.org/" target="_blank" class="alha-card"><span>סידור</span><span>Siddur</span></a>
+    <div class="s-list" style="gap:8px;justify-content:center;">
+      <a href="https://mg.alhatorah.org/Weekly" target="_blank" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px;text-align:center;color:#fff;text-decoration:none;font-weight:800;font-size:15px">פרשת השבוע (Parasha)</a>
+      <a href="https://shas.alhatorah.org/" target="_blank" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px;text-align:center;color:#fff;text-decoration:none;font-weight:800;font-size:15px">ש״ס (Talmud)</a>
+      <a href="https://rambam.alhatorah.org/" target="_blank" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px;text-align:center;color:#fff;text-decoration:none;font-weight:800;font-size:15px">רמב״ם (Rambam)</a>
+      <a href="https://siddur.alhatorah.org/" target="_blank" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px;text-align:center;color:#fff;text-decoration:none;font-weight:800;font-size:15px">סידור (Siddur)</a>
     </div>
+    <a href="https://mg.alhatorah.org/" target="_blank" style="background:#d97706;color:#fff;text-align:center;padding:10px;border-radius:12px;text-decoration:none;font-weight:700;font-size:13px">Ouvrir AlHaTorah.org ↗</a>
   </div>
 
   <!-- DOCK LATÉRAL -->
-<div class="dock glass">
-  <a href="tel:" class="ico" style="background:#34c759" title="Téléphone">📞</a>
-  <a href="whatsapp://" class="ico" style="background:#25d366" title="WhatsApp">💬</a>
-  <a href="music://" class="ico" style="background:#fa243c" title="Musique">🎵</a>
-  <button onclick="openMod('m-navigo')" class="ico" style="background:#0284c7" title="Transports IDF">🚆</button>
-  <button onclick="openMod('m-alha')" class="ico" style="background:#d97706" title="AlHaTorah">📜</button>
-  <button onclick="openMod('m-tora')" class="ico" style="background:#7c3aed" title="Tefilat HaDerech">📖</button>
-  <a id="ext-gmap" href="comgooglemaps://" class="ico" style="background:#4285f4" title="Google Maps">🗺️</a>
-</div>
-
+  <div class="dock glass">
+    <a href="tel:" class="ico" style="background:#34c759">📞</a>
+    <a href="whatsapp://" class="ico" style="background:#25d366">💬</a>
+    <a href="music://" class="ico" style="background:#fa243c">🎵</a>
+    <button onclick="openMod('m-navigo')" class="ico" style="background:#0284c7">🚆</button>
+    <button onclick="openMod('m-alha')" class="ico" style="background:#d97706">📜</button>
+    <a id="ext-gmap" href="comgooglemaps://" class="ico" style="background:#4285f4">🗺️</a>
+  </div>
 
   <!-- GRILLE PRINCIPALE -->
   <div class="grid">
@@ -219,8 +212,8 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:5px}
         </div>
       </div>
 
-      <!-- LECTEUR RADIO FLUIDE ET SÉLECTEUR -->
-      <div class="card glass" style="justify-content:space-between;padding:10px">
+      <!-- LECTEUR RADIO NATIF -->
+      <div class="card glass" style="justify-content:space-between;padding:12px;gap:8px">
         <select id="radio-select" onchange="selectRadio(this.value)">
           <optgroup label="Radios Françaises">
             <option value="0">🇫🇷 France Info</option>
@@ -246,17 +239,8 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:5px}
           </optgroup>
         </select>
 
-        <div style="display:flex;gap:10px;align-items:center;margin:6px 0">
-          <button class="mbtn glass" onclick="chg(-1)">⏮</button>
-          <button class="mbtn glass" id="pb" onclick="ply()" style="background:#3b82f6;color:#fff;width:40px;height:40px;font-size:16px">▶</button>
-          <button class="mbtn glass" onclick="chg(1)">⏭</button>
-        </div>
-
-        <div style="display:flex;align-items:center;gap:6px;width:100%">
-          <span style="font-size:11px">🔈</span>
-          <input type="range" id="vol-slider" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)">
-          <span style="font-size:11px">🔊</span>
-        </div>
+        <!-- Lecteur audio natif système -->
+        <audio id="au" controls playsinline style="width:100%;height:40px;border-radius:10px;accent-color:#3b82f6"></audio>
       </div>
     </div>
   </div>
@@ -271,9 +255,6 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:5px}
   </div>
   <div class="act-btn glass" onclick="openMod('m-tora')"><span style="font-size:20px">📖</span><span>Prière Route</span></div>
 </div>
-
-<audio id="au" playsinline preload="none"></audio>
-
 <script>
 setInterval(()=>{
   document.getElementById('clk').innerText = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
@@ -302,7 +283,7 @@ async function toggleBluetooth(){
     onScooterDisconnected();
     return;
   }
-try{
+  try{
     document.getElementById('bt-txt').innerText = 'Recherche...';
     bluetoothDevice = await navigator.bluetooth.requestDevice({
       filters: [{namePrefix: 'iScooter'}, {namePrefix: 'ESCOOTER'}, {namePrefix: 'i10'}, {namePrefix: 'MiniRobot'}, {namePrefix: 'HC-'}],
@@ -384,22 +365,23 @@ async function sendScooterCmd(cmd){
 }
 
 // ==========================================
-// 2. ZMANIM & SHABBAT COMPLETS (Hebcal API)
+// 2. ZMANIM & SHABBAT (Hebcal API)
 // ==========================================
 async function fetchOnlineZmanim(la,lo){
   try{
     const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'Europe/Paris';
-    const r=await fetch(`https://www.hebcal.com/zmanim?cfg=json&latitude=${la}&longitude=${lo}&tzid=${encodeURIComponent(tz)}`);
+    const todayStr = new Date().toISOString().split('T')[0];
+    const r=await fetch(`https://www.hebcal.com/zmanim?cfg=json&latitude=${la}&longitude=${lo}&tzid=${encodeURIComponent(tz)}&start=${todayStr}&end=${todayStr}`);
     const j=await r.json(),t=j.times;
     
     const rShab = await fetch(`https://www.hebcal.com/shabbat?cfg=json&latitude=${la}&longitude=${lo}&tzid=${encodeURIComponent(tz)}`);
     const jShab = await rShab.json();
     
-    let candleTime = "--:--", havdalahTime = "--:--";
+    let candleTime = null, havdalahTime = null;
     if(jShab && jShab.items){
       jShab.items.forEach(it => {
-        if(it.category === "candles") candleTime = new Date(it.date).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
-        if(it.category === "havdalah") havdalahTime = new Date(it.date).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+        if(it.category === "candles") candleTime = new Date(it.date);
+        if(it.category === "havdalah") havdalahTime = new Date(it.date);
       });
     }
 
@@ -420,10 +402,10 @@ async function fetchOnlineZmanim(la,lo){
       mk(t.minchaGedola, 'Minha Gedola', 'Minha G.'),
       mk(t.minchaKetana, 'Minha Ketana', 'Minha K.'),
       mk(t.plagHaMincha, 'Plag HaMincha', 'Plag'),
-      {name: '🕯️ Entrée Shabbat / Fête', short: 'Bougies', timeStr: candleTime, dateObj: candleTime !== "--:--" ? new Date() : null},
+      candleTime ? {name: '🕯️ Entrée Shabbat / Fête', short: 'Bougies', timeStr: candleTime.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}), dateObj: candleTime} : null,
       mk(t.sunset, 'Shkia (Coucher)', 'Shkia'),
       mk(t.tzeit7083deg, 'Tzeit HaKokhavim (Étoiles)', 'Tzeit'),
-      {name: '✨ Sortie Shabbat / Havdalah', short: 'Havdalah', timeStr: havdalahTime, dateObj: havdalahTime !== "--:--" ? new Date() : null},
+      havdalahTime ? {name: '✨ Sortie Shabbat / Havdalah', short: 'Havdalah', timeStr: havdalahTime.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}), dateObj: havdalahTime} : null,
       mk(t.chatzotNight, 'Hatsot Layla (Minuit)', 'Hatsot L.')
     ].filter(Boolean);
 
@@ -448,13 +430,13 @@ function renderZmanim(list){
   if(nextFound) {
     document.getElementById('top-z').innerText = `${nextFound.short} ${nextFound.timeStr}`;
   } else if(list.length > 0) {
-    document.getElementById('top-z').innerText = `${list[0].short} ${list[0].timeStr}`;
+    document.getElementById('top-z').innerText = `${list[list.length-1].short} (Passé)`;
   }
 }
-fetchOnlineZmanim(48.8566,2.3522);
+  fetchOnlineZmanim(48.8566,2.3522);
 
 // ==========================================
-// 3. LECTEUR RADIO FLUIDE ET SÉLECTEUR
+// 3. LECTEUR RADIO NATIF
 // ==========================================
 const radios=[
   {n:"France Info", u:"https://icecast.radiofrance.fr/franceinfo-midfi.mp3"},
@@ -475,39 +457,24 @@ const radios=[
   {n:"Galgalatz", u:"https://glzwizzlv.bynetcdn.com/glglz_mp3"}
 ];
 
-let idx=0, on=0, au=document.getElementById('au');
+let idx=0, au=document.getElementById('au');
 
 function selectRadio(val){
   idx = parseInt(val);
   playTrack();
 }
 
-function setVolume(val){
-  au.volume = parseFloat(val);
-}
-
 function playTrack(){
   const track = radios[idx];
   document.getElementById('radio-select').value = idx;
   au.src = track.u;
-  au.volume = parseFloat(document.getElementById('vol-slider').value);
-  au.play().then(()=>{
-    on=1;
-    document.getElementById('pb').innerText='⏸';
-  }).catch(()=>{
-    on=0;
-    document.getElementById('pb').innerText='▶';
-  });
+  au.play().catch(()=>{});
 }
 
-function ply(){
-  if(on){ au.pause(); on=0; document.getElementById('pb').innerText='▶'; }
-  else { playTrack(); }
-}
-function chg(d){ idx=(idx+d+radios.length)%radios.length; playTrack(); }
+au.src = radios[0].u;
 
 // ==========================================
-// 4. TRANSPORTS IDF (SNCF / RATP / MÉTRO / TRAM)
+// 4. TRANSPORTS IDF
 // ==========================================
 const transportLines = {
   "RER:A": {color:"#e3051c", dirs:["Saint-Germain / Cergy / Poissy","Boissy-St-Léger / Marne-la-Vallée"], stations:["La Défense","Charles de Gaulle - Étoile","Auber","Châtelet - Les Halles","Gare de Lyon","Nation","Vincennes","Val de Fontenay","Noisy-le-Grand","Torcy","Marne-la-Vallée Chessy","Saint-Germain-en-Laye","Nanterre-Préfecture","Cergy-Le-Haut","Poissy"]},
@@ -533,9 +500,9 @@ const transportLines = {
   "METRO:8": {color:"#e19bdf", text:"#000", dirs:["Balard","Pointe du Lac"], stations:["Balard","Lourmel","Boucicaut","Félix Faure","Commerce","La Motte-Picquet - Grenelle","École Militaire","La Tour-Maubourg","Invalides","Concorde","Madeleine","Opéra","Richelieu - Drouot","Grands Boulevards","Bonne Nouvelle","Strasbourg - Saint-Denis","République","Filles du Calvaire","Saint-Sébastien - Froissart","Chemin Vert","Bastille","Ledru-Rollin","Faidherbe - Chaligny","Reuilly - Diderot","Montgallet","Daumesnil","Michel Bizot","Porte Dorée","Porte de Charenton","Liberté","Charenton - Écoles","École Vétérinaire","Maisons-Alfort - Stade","Créteil - Préfecture","Pointe du Lac"]},
   "METRO:9": {color:"#b6bd00", text:"#000", dirs:["Pont de Sèvres","Mairie de Montreuil"], stations:["Pont de Sèvres","Billancourt","Marcel Sembat","Porte de Saint-Cloud","Exelmans","Michel-Ange - Molitor","Michel-Ange - Auteuil","Jasmin","Ranelagh","La Muette","Rue de la Pompe","Trocadéro","Iéna","Alma - Marceau","Franklin D. Roosevelt","Saint-Philippe du Roule","Miromesnil","Saint-Augustin","Havre - Caumartin","Chaussée d'Antin","Richelieu - Drouot","Grands Boulevards","Bonne Nouvelle","Strasbourg - Saint-Denis","République","Oberkampf","Saint-Ambroise","Voltaire","Charonne","Rue des Boulets","Nation","Buzenval","Maraîchers","Porte de Montreuil","Robespierre","Croix de Chavaux","Mairie de Montreuil"]},
   "METRO:10": {color:"#c9910d", dirs:["Boulogne - Pont de St-Cloud","Gare d'Austerlitz"], stations:["Boulogne - Pont de Saint-Cloud","Boulogne - Jean Jaurès","Porte d'Auteuil","Michel-Ange - Molitor","Chardon-Lagache","Mirabeau","Javel - André Citroën","Charles Michels","Avenue Émile Zola","La Motte-Picquet - Grenelle","Ségur","Duroc","Vaneau","Sèvres - Babylone","Mabillon","Odéon","Cluny - La Sorbonne","Maubert - Mutualité","Cardinal Lemoine","Jussieu","Gare d'Austerlitz"]},
- "METRO:11": {color:"#704b1c", dirs:["Châtelet","Rosny - Bois-Perrier"], stations:["Châtelet","Hôtel de Ville","Rambuteau","Arts et Métiers","République","Goncourt","Belleville","Pyrénées","Jourdain","Place des Fêtes","Télégraphe","Porte des Lilas","Mairie des Lilas","Serge Gainsbourg","Romainville - Carnot","Montreuil - Hôpital","La Dhuys","Coteaux Beauclair","Rosny - Bois-Perrier"]},
-   "METRO:12": {color:"#007852", dirs:["Mairie d'Aubervilliers","Mairie d'Issy"], stations:["Mairie d'Aubervilliers","Aimé Césaire","Front Populaire","Porte de la Chapelle","Marx Dormoy","Marcadet - Poissonniers","Jules Joffrin","Lamarck - Caulaincourt","Abbesses","Pigalle","Saint-Georges","Notre-Dame-de-Lorette","Trinité","Saint-Lazare","Madeleine","Concorde","Assemblée Nationale","Solférino","Rue du Bac","Sèvres - Babylone","Rennes","Notre-Dame-des-Champs","Montparnasse - Bienvenüe","Falguière","Pasteur","Volontaires","Vaugirard","Convention","Porte de Versailles","Corentin Celton","Mairie d'Issy"]},
-    "METRO:13": {color:"#6ec4e8", text:"#000", dirs:["Saint-Denis / Asnières-Gennevilliers","Châtillon - Montrouge"], stations:["Saint-Denis - Université","Basilique de Saint-Denis","Saint-Denis - Porte de Paris","Carrefour Pleyel","Mairie de Saint-Ouen","Garibaldi","Porte de Saint-Ouen","Asnières - Gennevilliers Les Courtilles","Les Agnettes","Gabriel Péri","Mairie de Clichy","Porte de Clichy","Brochant","La Fourche","Place de Clichy","Liège","Saint-Lazare","Miromesnil","Champs-Élysées - Clemenceau","Invalides","Varenne","Saint-François-Xavier","Duroc","Montparnasse - Bienvenüe","Gaîté","Pernety","Plaisance","Porte de Vanves","Malakoff - Plateau de Vanves","Châtillon - Montrouge"]},
+  "METRO:11": {color:"#704b1c", dirs:["Châtelet","Rosny - Bois-Perrier"], stations:["Châtelet","Hôtel de Ville","Rambuteau","Arts et Métiers","République","Goncourt","Belleville","Pyrénées","Jourdain","Place des Fêtes","Télégraphe","Porte des Lilas","Mairie des Lilas","Serge Gainsbourg","Romainville - Carnot","Montreuil - Hôpital","La Dhuys","Coteaux Beauclair","Rosny - Bois-Perrier"]},
+  "METRO:12": {color:"#007852", dirs:["Mairie d'Aubervilliers","Mairie d'Issy"], stations:["Mairie d'Aubervilliers","Aimé Césaire","Front Populaire","Porte de la Chapelle","Marx Dormoy","Marcadet - Poissonniers","Jules Joffrin","Lamarck - Caulaincourt","Abbesses","Pigalle","Saint-Georges","Notre-Dame-de-Lorette","Trinité","Saint-Lazare","Madeleine","Concorde","Assemblée Nationale","Solférino","Rue du Bac","Sèvres - Babylone","Rennes","Notre-Dame-des-Champs","Montparnasse - Bienvenüe","Falguière","Pasteur","Volontaires","Vaugirard","Convention","Porte de Versailles","Corentin Celton","Mairie d'Issy"]},
+  "METRO:13": {color:"#6ec4e8", text:"#000", dirs:["Saint-Denis / Asnières-Gennevilliers","Châtillon - Montrouge"], stations:["Saint-Denis - Université","Basilique de Saint-Denis","Saint-Denis - Porte de Paris","Carrefour Pleyel","Mairie de Saint-Ouen","Garibaldi","Porte de Saint-Ouen","Asnières - Gennevilliers Les Courtilles","Les Agnettes","Gabriel Péri","Mairie de Clichy","Porte de Clichy","Brochant","La Fourche","Place de Clichy","Liège","Saint-Lazare","Miromesnil","Champs-Élysées - Clemenceau","Invalides","Varenne","Saint-François-Xavier","Duroc","Montparnasse - Bienvenüe","Gaîté","Pernety","Plaisance","Porte de Vanves","Malakoff - Plateau de Vanves","Châtillon - Montrouge"]},
   "METRO:14": {color:"#62259d", dirs:["Saint-Denis Pleyel","Aéroport d'Orly"], stations:["Saint-Denis Pleyel","Mairie de Saint-Ouen","Saint-Ouen","Porte de Clichy","Pont Cardinet","Saint-Lazare","Madeleine","Pyramides","Châtelet","Gare de Lyon","Bercy","Cour Saint-Émilion","Bibliothèque François Mitterrand","Olympiades","Maison Blanche","Hôpital Bicêtre","Villejuif - Gustave Roussy","L'Haÿ-les-Roses","Chevilly-Larue","Thiais - Orly","Aéroport d'Orly"]},
   "TRAM:T1": {color:"#003ca6", dirs:["Asnières - Quatre Routes","Noisy-le-Sec"], stations:["Asnières - Quatre Routes","Les Courtilles","Gennevilliers","Villeneuve-la-Garenne","L'Île-Saint-Denis","Gare de Saint-Denis","Basilique de Saint-Denis","La Courneuve - 8 Mai 1945","Drancy - Avenir","Bobigny - Pablo Picasso","Pont de Bondy","Gare de Noisy-le-Sec"]},
   "TRAM:T2": {color:"#c04191", dirs:["Pont de Bezons","Porte de Versailles"], stations:["Pont de Bezons","Parc Pierre Lagravère","Charlebourg","Les Fauvelles","La Défense","Puteaux","Belvédère","Suresnes Longchamp","Les Coteaux","Saint-Cloud","Parc de Saint-Cloud","Musée de Sèvres","Brimborion","Meudon-sur-Seine","Les Moulineaux","Jacques-Henri Lartigue","Issy - Val de Seine","Henri Farman","Suzanne Lenglen","Porte de Versailles"]},
