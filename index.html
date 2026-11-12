@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trotplay - iScooter Dashboard</title>
+    <!-- Tailwind CSS pour un design moderne et responsive -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between font-sans">
+
+    <!-- En-tête -->
+    <header class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50 backdrop-blur">
+        <h1 class="text-xl font-bold tracking-wider text-cyan-400">TROTPLAY</h1>
+        <button id="connectBtn" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 rounded-xl transition shadow-lg shadow-cyan-500/20">
+            Connecter
+        </button>
+    </header>
+
+    <!-- Corps / Tableau de bord -->
+    <main class="flex-1 max-w-md w-full mx-auto p-4 flex flex-col gap-6 justify-center">
+        
+        <!-- Statut de connexion -->
+        <div id="statusBadge" class="text-center text-sm text-slate-400 bg-slate-900 py-2 rounded-lg border border-slate-800">
+            Statut : <span class="text-amber-400 font-medium">Déconnecté</span>
+        </div>
+
+        <!-- Compteur de Vitesse Principal -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 text-center relative shadow-2xl">
+            <span class="text-xs uppercase tracking-widest text-slate-500 block mb-2">Vitesse actuelle</span>
+            <div class="text-6xl font-black text-white mb-1"><span id="speedDisplay">0</span></div>
+            <span class="text-sm text-cyan-400 font-semibold">km/h</span>
+            
+            <!-- Indicateur de Freinage en temps réel -->
+            <div id="brakeIndicator" class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold bg-slate-800 text-slate-400 border border-slate-700 transition">
+                Frein : Relâché
+            </div>
+        </div>
+
+        <!-- Statistiques (Batterie & Mode) -->
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 text-center">
+                <span class="text-xs text-slate-400 block mb-1">Batterie</span>
+                <span id="batteryDisplay" class="text-2xl font-bold text-emerald-400">--%</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 text-center">
+                <span class="text-xs text-slate-400 block mb-1">Mode</span>
+                <span id="modeDisplay" class="text-2xl font-bold text-purple-400">Eco</span>
+            </div>
+        </div>
+
+        <!-- Panneau de Contrôle -->
+        <div class="grid grid-cols-3 gap-3">
+            <button id="lightBtn" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-4 rounded-2xl flex flex-col items-center gap-2 transition disabled:opacity-50" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                <span class="text-xs font-medium">Phares</span>
+            </button>
+            <button id="lockBtn" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-4 rounded-2xl flex flex-col items-center gap-2 transition disabled:opacity-50" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                <span id="lockText" class="text-xs font-medium">Verrouiller</span>
+            </button>
+            <button id="hornBtn" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-4 rounded-2xl flex flex-col items-center gap-2 transition disabled:opacity-50" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A40.014 40.014 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a39.901 39.901 0 01-1.564-.317z"/></svg>
+                <span class="text-xs font-medium">Klaxon</span>
+            </button>
+        </div>
+
+        <!-- Console de débogage / Trames -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3">
+            <span class="text-xs font-mono text-slate-500 block mb-1">Console BLE (Trames) :</span>
+            <div id="logBox" class="text-xs font-mono text-cyan-400 h-16 overflow-y-auto bg-slate-950 p-2 rounded-lg border border-slate-900">En attente de connexion...</div>
+        </div>
+
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="text-center p-4 text-xs text-slate-600 border-t border-slate-900">
+        Trotplay Engine &bull; Web Bluetooth API
+    </footer>
+
+    <!-- Logique JavaScript Web Bluetooth -->
+    <script>
+        let bluetoothDevice;
+        let characteristicWrite, characteristicRead;
+        let isLocked = false;
+        let lightsOn = false;
+      // UUIDs standards UART BLE (modifiables si vos captures Wireshark montrent des UUIDs spécifiques)
+        const SERVICE_UUID = "0000ffe0-0000-1000-8000-00805f9b34fb";
+        const CHARACTERISTIC_UUID = "0000ffe1-0000-1000-8000-00805f9b34fb";
+
+        const connectBtn = document.getElementById('connectBtn');
+        const statusBadge = document.getElementById('statusBadge');
+        const speedDisplay = document.getElementById('speedDisplay');
+        const batteryDisplay = document.getElementById('batteryDisplay');
+        const brakeIndicator = document.getElementById('brakeIndicator');
+        const lightBtn = document.getElementById('lightBtn');
+        const lockBtn = document.getElementById('lockBtn');
+        const lockText = document.getElementById('lockText');
+        const hornBtn = document.getElementById('hornBtn');
+        const logBox = document.getElementById('logBox');
+
+        function log(message) {
+            console.log(message);
+            logBox.innerHTML += `<div>> ${message}</div>`;
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        connectBtn.addEventListener('click', async () => {
+            if (bluetoothDevice && bluetoothDevice.gatt.connected) {
+                // Déconnexion manuelle
+                bluetoothDevice.gatt.disconnect();
+                return;
+            }
+
+            try {
+                log("Recherche de la trottinette...");
+                bluetoothDevice = await navigator.bluetooth.requestDevice({
+                    filters: [{ namePrefix: "iScooter" }, { namePrefix: "ESCOOTER" }, { namePrefix: "i10" }],
+                    optionalServices: [SERVICE_UUID]
+                });
+
+                bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
+
+                log("Connexion au serveur GATT...");
+                const server = await bluetoothDevice.gatt.connect();
+                
+                log("Recherche du service UART...");
+                const service = await server.getPrimaryService(SERVICE_UUID);
+                
+                log("Récupération des caractéristiques...");
+                characteristicWrite = await service.getCharacteristic(CHARACTERISTIC_UUID);
+                characteristicRead = await service.getCharacteristic(CHARACTERISTIC_UUID);
+
+                await characteristicRead.startNotifications();
+                characteristicRead.addEventListener('characteristicvaluechanged', handleNotifications);
+
+                // Mise à jour de l'UI connectée
+                statusBadge.innerHTML = `Statut : <span class="text-emerald-400 font-medium">Connecté (${bluetoothDevice.name || 'iScooter'})</span>`;
+                connectBtn.textContent = "Déconnecter";
+                connectBtn.classList.replace('bg-cyan-500', 'bg-rose-500');
+                connectBtn.classList.replace('hover:bg-cyan-400', 'hover:bg-rose-400');
+                
+                lightBtn.removeAttribute('disabled');
+                lockBtn.removeAttribute('disabled');
+                hornBtn.removeAttribute('disabled');
+
+                log("Connexion établie avec succès !");
+            } catch (error) {
+                log("Erreur : " + error);
+            }
+        });
+      function onDisconnected() {
+            log("Déconnecté de la trottinette.");
+            statusBadge.innerHTML = `Statut : <span class="text-amber-400 font-medium">Déconnecté</span>`;
+            connectBtn.textContent = "Connecter";
+            connectBtn.classList.replace('bg-rose-500', 'bg-cyan-500');
+            connectBtn.classList.replace('hover:bg-rose-400', 'hover:bg-cyan-400');
+            
+            lightBtn.setAttribute('disabled', 'true');
+            lockBtn.setAttribute('disabled', 'true');
+            hornBtn.setAttribute('disabled', 'true');
+            
+            // Réinitialisation des affichages
+            speedDisplay.textContent = "0";
+            batteryDisplay.textContent = "--%";
+            brakeIndicator.className = "absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold bg-slate-800 text-slate-400 border border-slate-700 transition";
+            brakeIndicator.textContent = "Frein : Relâché";
+        }
+
+        // Analyse des données entrantes de la trottinette (Trames de notification)
+        function handleNotifications(event) {
+            const value = event.target.value;
+            const bytes = new Uint8Array(value.buffer);
+            log("Rx: " + Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join(' '));
+
+            // Exemple de lecture structurelle (À adapter selon l'index exact des octets de votre modèle iScooter)
+            if (bytes.length >= 4) {
+                // Exemple : l'octet à l'index 2 représente la vitesse
+                const speed = bytes[2];
+                speedDisplay.textContent = speed;
+
+                // Exemple : un octet ou un bit dédié au freinage (ex: si l'octet 3 contient un flag de frein)
+                const isBraking = (bytes[3] & 0x02) !== 0; // Masque bit sur le frein (à ajuster selon vos logs)
+                if (isBraking) {
+                    brakeIndicator.className = "absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-400 border border-rose-500/50 transition animate-pulse";
+                    brakeIndicator.textContent = "Frein : ACTIF";
+                } else {
+                    brakeIndicator.className = "absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold bg-slate-800 text-slate-400 border border-slate-700 transition";
+                    brakeIndicator.textContent = "Frein : Relâché";
+                }
+            }
+        }
+
+        async function sendCommand(bytesArray) {
+            if (!characteristicWrite) return;
+            try {
+                await characteristicWrite.writeValue(new Uint8Array(bytesArray));
+                log("Tx: " + bytesArray.map(b => b.toString(16).padStart(2, '0')).join(' '));
+            } catch (error) {
+                log("Erreur d'envoi : " + error);
+            }
+        }
+
+        // Actions des boutons
+        lightBtn.addEventListener('click', () => {
+            lightsOn = !lightsOn;
+            lightBtn.classList.toggle('border-amber-400', lightsOn);
+            sendCommand(lightsOn ? [0xA5, 0x01, 0x03, 0x01] : [0xA5, 0x01, 0x03, 0x00]);
+        });
+
+        lockBtn.addEventListener('click', () => {
+            isLocked = !isLocked;
+            lockText.textContent = isLocked ? "Déverrouiller" : "Verrouiller";
+            lockBtn.classList.toggle('border-rose-400', isLocked);
+            sendCommand(isLocked ? [0xA5, 0x01, 0x02, 0x01] : [0xA5, 0x01, 0x02, 0x00]);
+        });
+
+        hornBtn.addEventListener('click', () => {
+            sendCommand([0xA5, 0x01, 0x04, 0x01]);
+        });
+    </script>
+</body>
+</html>
