@@ -9,7 +9,7 @@
 <style>
 :root{--bg:radial-gradient(circle at top left,#1e293b,#05070a 75%);--glass:rgba(255,255,255,.08);--border:rgba(255,255,255,.22);--txt:#fff;--sub:#94a3b8;--mapf:invert(90%) hue-rotate(180deg) contrast(95%)}
 body.light{--bg:radial-gradient(circle at top left,#dbeafe,#f1f5f9 75%);--glass:rgba(255,255,255,.82);--border:rgba(255,255,255,.95);--txt:#0f172a;--sub:#475569;--mapf:none}
-*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;user-select:none;-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 body{background:var(--bg);color:var(--txt);height:100dvh;display:flex;flex-direction:column;overflow:hidden;transition:.3s;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
 .glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,.2),inset 0 1px 1px rgba(255,255,255,.3)}
 .top{height:46px;display:flex;justify-content:space-between;align-items:center;padding:0 10px;border-bottom:1px solid var(--border);font-size:12px;font-weight:700;flex-shrink:0;gap:4px;overflow-x:auto}
@@ -426,21 +426,27 @@ async function fetchOnlineZmanim(la,lo){
   }catch(e){}
 }
   function renderZmanim(list){
+  function renderZmanim(list){
   const now = new Date();
   let nextFound = null;
   const html = list.map(item => {
     let rowClass = 's-row';
-    if(item.dateObj && item.dateObj <= now){
+    // On compare l'objet Date exact avec l'heure actuelle
+    if(item.dateObj && item.dateObj < now){
       rowClass += ' past';
-    } else if(!nextFound && item.dateObj){
+    } else if(!nextFound && item.dateObj && item.dateObj >= now){
       nextFound = item;
       rowClass += ' next';
     }
-    return `<div class="${rowClass}"><span>${item.name}</span><span style="color:#60a5fa">${item.timeStr}</span></div>`;
+    return `<div class="${rowClass}"><span>${item.name}</span><span style="color:${rowClass.includes('next') ? '#34d399' : '#60a5fa'}">${item.timeStr}</span></div>`;
   }).join('');
   document.getElementById('zman-list').innerHTML = html;
-  if(nextFound) document.getElementById('top-z').innerText = `${nextFound.short} ${nextFound.timeStr}`;
-}
+  if(nextFound) {
+    document.getElementById('top-z').innerText = `${nextFound.short} ${nextFound.timeStr}`;
+  } else if(list.length > 0) {
+    document.getElementById('top-z').innerText = `${list[0].short} ${list[0].timeStr}`;
+  }
+  }
 fetchOnlineZmanim(48.8566,2.3522);
 
 // ==========================================
