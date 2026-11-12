@@ -5,79 +5,84 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Liquid CarPlay Trottinette Pro</title>
+<title>Trotplay</title>
 <style>
 :root{--bg:radial-gradient(circle at top left,#1e293b,#05070a 75%);--glass:rgba(255,255,255,.08);--border:rgba(255,255,255,.22);--txt:#fff;--sub:#94a3b8;--mapf:invert(90%) hue-rotate(180deg) contrast(95%)}
-body.light{--bg:radial-gradient(circle at top left,#dbeafe,#f1f5f9 75%);--glass:rgba(255,255,255,.78);--border:rgba(255,255,255,.95);--txt:#0f172a;--sub:#475569;--mapf:none}
+body.light{--bg:radial-gradient(circle at top left,#dbeafe,#f1f5f9 75%);--glass:rgba(255,255,255,.82);--border:rgba(255,255,255,.95);--txt:#0f172a;--sub:#475569;--mapf:none}
 *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;user-select:none;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);color:var(--txt);height:100dvh;display:flex;flex-direction:column;overflow:hidden;transition:.3s;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
 .glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,.2),inset 0 1px 1px rgba(255,255,255,.3)}
-.top{height:46px;display:flex;justify-content:space-between;align-items:center;padding:0 12px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;flex-shrink:0}
-.pill{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;cursor:pointer;border:none;color:var(--txt)}
-.dot{width:9px;height:9px;border-radius:50%;background:#ff9100;transition:.3s}
+.top{height:46px;display:flex;justify-content:space-between;align-items:center;padding:0 10px;border-bottom:1px solid var(--border);font-size:12px;font-weight:700;flex-shrink:0;gap:6px}
+.pill{display:flex;align-items:center;gap:5px;padding:6px 10px;border-radius:20px;cursor:pointer;border:none;color:var(--txt);white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;background:#ff9100;transition:.3s;flex-shrink:0}
 .main{display:flex;flex:1;min-height:0;position:relative}
-.dock{width:68px;border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;padding:6px 0;flex-shrink:0}
-.ico{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:21px;border:none;color:#fff;cursor:pointer;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.dock{width:64px;border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;padding:6px 0;flex-shrink:0}
+.ico{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:20px;border:none;color:#fff;cursor:pointer;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.25)}
 .ico:active,.act-btn:active,.mbtn:active{transform:scale(.94)}
-.grid{flex:1;display:grid;grid-template-columns:1.45fr 1fr;gap:8px;padding:8px;min-height:0}
-.mapbox{position:relative;border-radius:20px;overflow:hidden;background:#111}
+.grid{flex:1;display:grid;grid-template-columns:1.5fr 1fr;gap:8px;padding:8px;min-height:0}
+.mapbox{position:relative;border-radius:20px;overflow:hidden;background:#111;display:flex;flex-direction:column}
+.nav-bar{position:absolute;top:8px;left:8px;right:8px;z-index:15;display:flex;gap:6px}
+.nav-bar input{flex:1;background:rgba(15,23,42,.88);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.25);color:#fff;padding:8px 12px;border-radius:12px;font-size:12px;font-weight:600;outline:none;user-select:text;-webkit-user-select:text}
+.nav-bar button,.nav-bar a{background:#2563eb;color:#fff;border:none;border-radius:12px;padding:0 12px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none}
 iframe{width:100%;height:100%;border:none;filter:var(--mapf)}
-.rec{position:absolute;bottom:10px;right:10px;z-index:10;color:var(--txt);border-radius:12px;padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.rec{position:absolute;bottom:10px;right:10px;z-index:10;background:rgba(15,23,42,.88);color:#fff;border-radius:12px;padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer}
 .col{display:flex;flex-direction:column;gap:8px;min-height:0}
 .card{flex:1;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;min-height:0}
-.spd{font-size:58px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
-.mbtn{color:var(--txt);width:40px;height:40px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.tag{background:#3b82f6;color:#fff;padding:5px 8px;border-radius:8px;font-size:11px;font-weight:700;border:none;cursor:pointer}
-.bot{height:98px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1.8fr 1fr;gap:8px;padding:8px;flex-shrink:0}
+.spd{font-size:56px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.mbtn{color:var(--txt);width:38px;height:38px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.tag{background:#3b82f6;color:#fff;padding:4px 7px;border-radius:8px;font-size:10px;font-weight:700;border:none;cursor:pointer;text-decoration:none}
+.bot{height:94px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1.8fr 1fr;gap:8px;padding:8px;flex-shrink:0}
 .act-btn{border-radius:16px;color:var(--txt);font-size:13px;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;text-decoration:none}
 .mini-retro{position:relative;background:#000;border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer}
 #retro-vid{width:100%;height:100%;object-fit:cover;display:none;transform:scaleX(-1)}
 #retro-txt{font-size:12px;font-weight:700;color:#00e676;text-align:center;padding:6px}
 .modal{display:none;position:absolute;inset:8px;z-index:2000;border-radius:20px;padding:14px 16px;flex-direction:column;justify-content:space-between;background:rgba(15,23,42,.97);backdrop-filter:blur(25px);color:#fff}
 .s-list{overflow-y:auto;display:flex;flex-direction:column;gap:6px;margin:8px 0;flex:1}
-.s-row{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,.08);font-size:13px;font-weight:700;color:#fff}
+.s-row{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,.08);font-size:13px;font-weight:700;color:#fff;transition:.2s}
+.s-row.past{opacity:.42;text-decoration:line-through}
+.s-row.next{background:rgba(16,185,129,.22);border:1px solid #10b981;box-shadow:0 0 12px rgba(16,185,129,.2)}
 .alha-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0;flex:1;overflow-y:auto}
 .alha-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;text-decoration:none;gap:4px}
 .alha-card span:first-child{font-size:15px;font-weight:800;color:#fbbf24}
 .alha-card span:last-child{font-size:11px;color:#cbd5e1}
-select, input[type=text]{width:100%;padding:9px;border-radius:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:13px;font-weight:700;outline:none}
+select{width:100%;padding:9px;border-radius:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:13px;font-weight:700;outline:none}
 select option, optgroup{background:#0f172a;color:#fff}
 input[type=range]{width:100%;accent-color:#3b82f6;height:6px}
 .badge{padding:2px 7px;border-radius:6px;font-size:11px;font-weight:900;margin-right:6px;display:inline-block}
 
 @media(orientation:landscape){
-.top{height:38px;font-size:12px}
-.dock{width:60px}
-.ico{width:38px;height:38px;font-size:18px;border-radius:11px}
-.spd{font-size:44px}
-.bot{height:72px;padding:6px 8px}
-.act-btn{flex-direction:row;gap:8px;font-size:13px}
+.top{height:38px;font-size:11px}
+.dock{width:58px}
+.ico{width:36px;height:36px;font-size:17px;border-radius:10px}
+.spd{font-size:42px}
+.bot{height:68px;padding:6px 8px}
+.act-btn{flex-direction:row;gap:8px;font-size:12px}
 }
 
 @media(orientation:portrait){
 .main{flex-direction:column}
-.dock{width:100%;height:62px;flex-direction:row;border-right:none;border-bottom:1px solid var(--border)}
-.grid{grid-template-columns:1fr;grid-template-rows:1.25fr 1fr}
+.dock{width:100%;height:58px;flex-direction:row;border-right:none;border-bottom:1px solid var(--border)}
+.grid{grid-template-columns:1fr;grid-template-rows:1.3fr 1fr}
 .col{flex-direction:row}
-.spd{font-size:48px}
-.bot{height:105px}
+.spd{font-size:46px}
+.bot{height:98px}
 }
 </style>
 </head>
 <body>
 
 <div class="top glass">
-  <div class="pill glass" onclick="toggleSim()"><div class="dot" id="d"></div><span id="gs">GPS / Simu</span></div>
-  <div class="pill glass" onclick="openMod('m-zman')" style="color:#60a5fa">✡️ <span id="top-z">Horaires</span></div>
-  <div id="clk" style="font-size:15px;font-variant-numeric:tabular-nums">--:--</div>
-  <button class="pill glass" onclick="theme()" id="tbtn" style="font-size:13px">🌙</button>
+  <div class="pill glass" onclick="toggleSim()"><div class="dot" id="d"></div><span id="gs">GPS</span></div>
+  <div class="pill glass" onclick="openMod('m-zman')" style="color:#34d399;border-color:rgba(52,211,153,.4)">✡️ <span id="top-z">Calcul...</span></div>
+  <div id="clk" style="font-size:14px;font-variant-numeric:tabular-nums">--:--</div>
+  <button class="pill glass" onclick="theme()" id="tbtn" style="font-size:12px">🌙</button>
 </div>
 
 <div class="main">
-  <!-- MODALE HORAIRES HALAKHIQUES -->
+  <!-- MODALE HORAIRES HALAKHIQUES EN DIRECT -->
   <div id="m-zman" class="modal glass">
     <div style="display:flex;justify-content:space-between;align-items:center">
-      <span style="font-size:15px;font-weight:800">✡️ Horaires Halakhiques</span>
+      <span style="font-size:15px;font-weight:800">✡️ Prochain Horaire Halakhique</span>
       <span id="heb-date" style="font-size:12px;color:#60a5fa;font-weight:700"></span>
       <button onclick="closeMod()" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:12px">Fermer</button>
     </div>
@@ -113,11 +118,11 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:6px}
         <optgroup label="Métro Paris">
           <option value="METRO:1">Métro 1</option>
           <option value="METRO:2">Métro 2</option>
-          <option value="METRO:3">Métro 3 / 3bis</option>
+          <option value="METRO:3">Métro 3</option>
           <option value="METRO:4">Métro 4</option>
           <option value="METRO:5">Métro 5</option>
           <option value="METRO:6">Métro 6</option>
-          <option value="METRO:7">Métro 7 / 7bis</option>
+          <option value="METRO:7">Métro 7</option>
           <option value="METRO:8">Métro 8</option>
           <option value="METRO:9">Métro 9</option>
           <option value="METRO:10">Métro 10</option>
@@ -184,30 +189,37 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:6px}
   <div class="dock glass">
     <a href="tel:" class="ico" style="background:#34c759" title="Téléphone">📞</a>
     <a href="whatsapp://" class="ico" style="background:#25d366" title="WhatsApp">💬</a>
+    <a href="music://" class="ico" style="background:#fa243c" title="Apple Music">🎵</a>
     <button onclick="openMod('m-navigo')" class="ico" style="background:#0284c7" title="Transports SNCF / RATP">🚆</button>
     <button onclick="openMod('m-alha')" class="ico" style="background:#d97706" title="AlHaTorah">📜</button>
-    <a href="shortcuts://run-shortcut?name=CalJ" class="ico" style="background:#2563eb" title="CalJ">✡️</a>
-    <a href="maps://" class="ico" style="background:#007aff" title="Plans">🧭</a>
+    <a id="ext-gmap" href="comgooglemaps://" class="ico" style="background:#4285f4" title="Ouvrir Google Maps">🗺️</a>
   </div>
 
   <!-- GRILLE PRINCIPALE -->
   <div class="grid">
+    <!-- GOOGLE MAPS EN DIRECT + ITINÉRAIRE -->
     <div class="mapbox glass">
-      <iframe id="gmap" src="https://www.openstreetmap.org/export/embed.html?bbox=2.3322%2C48.8466%2C2.3722%2C48.8666&layer=mapnik&marker=48.8566%2C2.3522"></iframe>
-      <button class="rec glass" onclick="initGPS()">📍 Ma Position</button>
+      <div class="nav-bar">
+        <input type="text" id="dest-input" placeholder="Destination (ex: Opéra Paris)..." onkeydown="if(event.key==='Enter')searchRoute()">
+        <button onclick="searchRoute()">Go</button>
+      </div>
+      <iframe id="gmap" src="https://maps.google.com/maps?q=48.8566,2.3522&z=15&output=embed"></iframe>
+      <button class="rec glass" onclick="centerOnMe()">📍 Ma Position</button>
     </div>
 
     <div class="col">
+      <!-- COMPTEUR DE VITESSE -->
       <div class="card glass">
         <div class="spd" id="sp">0</div>
         <div style="font-size:11px;color:#00e676;font-weight:800;margin-top:4px;letter-spacing:1px">KM/H</div>
       </div>
 
+      <!-- LECTEUR AUDIO RADIOS JUIVES & MUSIQUE IPHONE -->
       <div class="card glass" style="justify-content:space-between;padding:10px">
         <div style="display:flex;justify-content:space-between;width:100%;align-items:center;gap:4px">
-          <span id="st" style="font-size:12px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">Radio Shalom</span>
-          <button class="tag" onclick="resetRad()" style="background:#10b981" title="Radios">📻</button>
-          <label class="tag">+ MP3<input type="file" accept="audio/*" multiple style="display:none" onchange="loadFiles(this.files)"></label>
+          <span id="st" style="font-size:12px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">Radio J</span>
+          <button class="tag" onclick="resetRad()" style="background:#10b981" title="Radios Juives">📻 Radios</button>
+          <label class="tag" style="background:#ec4899">+ Musique<input type="file" accept="audio/*,audio/mp3,audio/m4a,audio/aac" multiple style="display:none" onchange="loadFiles(this.files)"></label>
         </div>
         <div style="display:flex;gap:10px;align-items:center">
           <button class="mbtn glass" onclick="chg(-1)">⏮</button>
@@ -226,7 +238,7 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:6px}
 
 <!-- BARRE INFÉRIEURE -->
 <div class="bot glass">
-  <div class="act-btn glass" onclick="openMod('m-zman')"><span style="font-size:20px">✡️</span><span>Horaires CalJ</span></div>
+  <div class="act-btn glass" onclick="openMod('m-zman')"><span style="font-size:20px">✡️</span><span>Horaires Juifs</span></div>
   <div class="mini-retro glass" onclick="toggleRetro()" id="retro-box">
     <video id="retro-vid" autoplay playsinline muted></video>
     <div id="retro-txt">📷 Rétroviseur<br><span style="font-size:10px;color:#94a3b8">(Toucher pour caméra)</span></div>
@@ -234,11 +246,15 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:6px}
   <div class="act-btn glass" onclick="openMod('m-tora')"><span style="font-size:20px">📖</span><span>Prière Route</span></div>
 </div>
 
-<audio id="au" crossorigin="anonymous" preload="none"></audio>
+<audio id="au" playsinline preload="none"></audio>
 
 <script>
+// Horloge & mise à jour automatique du prochain horaire juif chaque minute
+let currentZmanimList = [];
 setInterval(()=>{
-  document.getElementById('clk').innerText=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  const now = new Date();
+  document.getElementById('clk').innerText = now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  if(now.getSeconds() === 0 && currentZmanimList.length) renderZmanim(currentZmanimList);
 },1000);
 
 let wakeLock=null;
@@ -252,17 +268,250 @@ function theme(){
 function openMod(id){closeMod();document.getElementById(id).style.display='flex';if(id==='m-navigo')updateStationsList();}
 function closeMod(){document.querySelectorAll('.modal').forEach(m=>m.style.display='none');}
 
-// Base complète des lignes RER, Transilien SNCF, Métro et Tramways IDF
+// ==========================================
+// 1. HORAIRES JUIFS DYNAMIQUES (Bascule auto sur le prochain horaire)
+// ==========================================
+function renderZmanim(list){
+  currentZmanimList = list;
+  const now = new Date();
+  let nextFound = null;
+
+  const html = list.map(item => {
+    if(!item.dateObj || isNaN(item.dateObj.getTime())){
+      return `<div class="s-row"><span>${item.name}</span><span style="color:#60a5fa">${item.timeStr}</span></div>`;
+    }
+    const isPast = item.dateObj <= now;
+    let rowClass = 's-row';
+    let badge = '';
+
+    if(isPast){
+      rowClass += ' past';
+    } else if(!nextFound){
+      nextFound = item;
+      rowClass += ' next';
+        badge = `<span style="background:#10b981;color:#fff;font-size:10px;padding:2px 6px;border-radius:6px;margin-left:6px">PROCHAIN</span>`;
+    }
+
+    return `<div class="${rowClass}"><span>${item.name}${badge}</span><span style="color:${!isPast && nextFound===item ? '#34d399' : '#60a5fa'}">${item.timeStr}</span></div>`;
+  }).join('');
+
+  document.getElementById('zman-list').innerHTML = html;
+
+  // Si tous les horaires du jour sont passés, on affiche le premier horaire de demain
+  if(nextFound){
+    document.getElementById('top-z').innerText = `${nextFound.short} ${nextFound.timeStr}`;
+  } else if(list.length > 0){
+    document.getElementById('top-z').innerText = `Demain ${list[0].short} ${list[0].timeStr}`;
+  }
+}
+
+function calcLocalZmanim(){
+  const d=new Date(),start=new Date(d.getFullYear(),0,0),day=Math.floor((d-start)/86400000);
+  const dec=23.44*Math.sin((2*Math.PI/365)*(day-81))*Math.PI/180,lat=48.8566*Math.PI/180;
+  const ha=Math.acos(-Math.tan(lat)*Math.tan(dec))*180/Math.PI;
+  const noon=12.85-(2.35/15),sr=noon-(ha/15),ss=noon+(ha/15);
+  
+  const toObj = (h, name, short) => {
+    let hr=Math.floor(h),mn=Math.round((h-hr)*60);
+    if(mn===60){hr++;mn=0}
+    const dt = new Date(d.getFullYear(), d.getMonth(), d.getDate(), hr, mn, 0);
+    return {name, short, timeStr: `${String(hr).padStart(2,'0')}:${String(mn).padStart(2,'0')}`, dateObj: dt};
+  };
+
+  const list=[
+    toObj(sr-1.2, 'Alot HaShahar (Aube)', 'Alot'),
+    toObj(sr, 'Netz HaHama (Lever)', 'Netz'),
+    toObj(sr+(ss-sr)*0.25, 'Fin Shema (GRA)', 'Shema'),
+    toObj(noon, 'Hatsot (Midi)', 'Hatsot'),
+    toObj(noon+0.5, 'Minha Gedola', 'Minha'),
+    toObj(ss, 'Shkia (Coucher)', 'Shkia'),
+    toObj(ss+0.65, 'Tzeit HaKokhavim (Étoiles)', 'Tzeit')
+  ];
+  document.getElementById('heb-date').innerText=new Intl.DateTimeFormat('fr-FR-u-ca-hebrew',{day:'numeric',month:'long',year:'numeric'}).format(d);
+  renderZmanim(list);
+}
+calcLocalZmanim();
+
+async function fetchOnlineZmanim(la,lo){
+  try{
+    const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'Europe/Paris';
+    const r=await fetch(`https://www.hebcal.com/zmanim?cfg=json&latitude=${la}&longitude=${lo}&tzid=${encodeURIComponent(tz)}`);
+    const j=await r.json(),t=j.times;
+    if(!t)return;
+    const mk = (iso, name, short) => {
+      if(!iso) return null;
+      const dt = new Date(iso);
+      return {name, short, timeStr: dt.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}), dateObj: dt};
+    };
+    const list=[
+      mk(t.alotHaShachar, 'Alot HaShahar (Aube)', 'Alot'),
+      mk(t.sunrise, 'Netz HaHama (Lever)', 'Netz'),
+      mk(t.sofZmanShma, 'Fin Shema (GRA)', 'Shema'),
+      mk(t.chatzot, 'Hatsot (Midi)', 'Hatsot'),
+      mk(t.minchaGedola, 'Minha Gedola', 'Minha'),
+      mk(t.sunset, 'Shkia (Coucher)', 'Shkia'),
+      mk(t.tzeit7083deg, 'Tzeit HaKokhavim (Étoiles)', 'Tzeit')
+    ].filter(Boolean);
+    if(list.length) renderZmanim(list);
+  }catch(e){}
+}
+fetchOnlineZmanim(48.8566,2.3522);
+
+// ==========================================
+// 2. GOOGLE MAPS EN DIRECT & ITINÉRAIRE
+// ==========================================
+let currentLat = 48.8566, currentLon = 2.3522, activeDest = "";
+let watchId = null, lastMapUpdate = 0, sim = null;
+
+function updateGoogleMap(force = false){
+  const iframe = document.getElementById('gmap');
+  if(activeDest){
+    // Affichage de l'itinéraire Google Maps en direct (mode vélo/trottinette ou trajet)
+    iframe.src = `https://maps.google.com/maps?saddr=${currentLat},${currentLon}&daddr=${encodeURIComponent(activeDest)}&dirflg=b&output=embed`;
+    document.getElementById('ext-gmap').href = `https://www.google.com/maps/dir/?api=1&origin=${currentLat},${currentLon}&destination=${encodeURIComponent(activeDest)}&travelmode=bicycling`;
+  } else if(force){
+    iframe.src = `https://maps.google.com/maps?q=${currentLat},${currentLon}&z=16&output=embed`;
+    document.getElementById('ext-gmap').href = `https://www.google.com/maps/search/?api=1&query=${currentLat},${currentLon}`;
+  }
+}
+  function searchRoute(){
+  const val = document.getElementById('dest-input').value.trim();
+  activeDest = val;
+  updateGoogleMap(true);
+}
+
+function centerOnMe(){
+  activeDest = "";
+  document.getElementById('dest-input').value = "";
+  initGPS(true);
+}
+
+function toggleSim(){
+  if(sim){clearInterval(sim);sim=null;document.getElementById('sp').innerText='0';document.getElementById('gs').innerText='GPS';document.getElementById('d').style.background='#ff9100';return;}
+  if(watchId!==null){navigator.geolocation.clearWatch(watchId);watchId=null;}
+  document.getElementById('gs').innerText='Simu';
+  document.getElementById('d').style.background='#3b82f6';
+  let v=0;
+  sim=setInterval(()=>{v=v<25?v+1:23+Math.floor(Math.random()*3);document.getElementById('sp').innerText=v;},300);
+}
+
+function initGPS(forceCenter = false){
+  if(!navigator.geolocation){document.getElementById('gs').innerText='Sans GPS';return;}
+  if(sim){clearInterval(sim);sim=null;}
+  if(watchId!==null)navigator.geolocation.clearWatch(watchId);
+  document.getElementById('gs').innerText='GPS...';
+  
+  watchId=navigator.geolocation.watchPosition(p=>{
+    currentLat = p.coords.latitude;
+    currentLon = p.coords.longitude;
+    document.getElementById('gs').innerText='GPS OK';
+    document.getElementById('d').style.background='#00e676';
+    
+    let speedKmh = (p.coords.speed !== null && p.coords.speed >= 0)?Math.round(p.coords.speed * 3.6):0;
+    document.getElementById('sp').innerText = speedKmh;
+
+    const now=Date.now();
+    if(forceCenter || now-lastMapUpdate>12000){
+      forceCenter = false;
+      lastMapUpdate=now;
+      updateGoogleMap(true);
+      fetchOnlineZmanim(currentLat, currentLon);
+    }
+  },err=>{
+    document.getElementById('gs').innerText='GPS Bloqué';
+    document.getElementById('d').style.background='#ef4444';
+  },{enableHighAccuracy:true,maximumAge:3000,timeout:15000});
+}
+initGPS(true);
+
+// ==========================================
+// 3. LECTEUR AUDIO (RADIOS JUIVES & MUSIQUE IPHONE)
+// ==========================================
+const radios=[
+  {n:"✡️ Radio J (Paris)", u:"https://radioj.ice.infomaniak.ch/radioj-128.mp3"},
+  {n:"✡️ RCJ (Communauté Juive)", u:"https://rcj.ice.infomaniak.ch/rcj-128.mp3"},
+  {n:"✡️ Radio Shalom", u:"https://radioshalombesancon.ice.infomaniak.ch/radioshalombesancon-128.mp3"},
+  {n:"🇮🇱 Kol Chai (קול חי)", u:"https://media2.93fm.co.il/live-new"},
+  {n:"🇮🇱 Galgalatz (גלגלצ)", u:"https://glzwizzlv.bynetcdn.com/glglz_mp3"},
+  {n:"🇫🇷 FIP Radio", u:"https://icecast.radiofrance.fr/fip-midfi.mp3"}
+];
+let tracks=[...radios],idx=0,on=0,au=document.getElementById('au');
+
+// Compatibilité écran verrouillé iPhone (Media Session API)
+function updateMediaSession(){
+  if('mediaSession' in navigator){
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: tracks[idx].n,
+      artist: 'Liquid CarPlay Trottinette',
+      album: 'En direct'
+    });
+    navigator.mediaSession.setActionHandler('play', ()=>ply());
+    navigator.mediaSession.setActionHandler('pause', ()=>ply());
+    navigator.mediaSession.setActionHandler('previoustrack', ()=>chg(-1));
+    navigator.mediaSession.setActionHandler('nexttrack', ()=>chg(1));
+  }
+}
+
+function resetRad(){tracks=[...radios];idx=0;playTrack();}
+
+function loadFiles(files){
+  if(!files || !files.length)return;
+  tracks=Array.from(files).map(f=>({
+    n: "🎵 " + f.name.replace(/\.[^/.]+$/,""),
+    u: URL.createObjectURL(f),
+    local: true
+  }));
+  idx=0;
+  playTrack();
+}
+
+function playTrack(){
+  const track = tracks[idx];
+  document.getElementById('st').innerText = track.n;
+  au.src = track.u;
+  au.play().then(()=>{
+    on=1;
+    document.getElementById('pb').innerText='⏸';
+    updateMediaSession();
+  }).catch(()=>{
+    // Si un flux radio ne répond pas sur iOS, passage automatique à la station suivante si c'est une radio
+    if(!track.local && tracks.length > 1){
+      document.getElementById('st').innerText = "Passage station suivante...";
+      setTimeout(()=>{ chg(1); }, 800);
+    } else {
+      on=0;
+      document.getElementById('pb').innerText='▶';
+      document.getElementById('st').innerText='Appuyer sur ▶ pour lire';
+    }
+  });
+}
+
+au.addEventListener('ended', ()=>{ if(tracks[idx].local) chg(1); });
+
+function ply(){
+  if(on){
+    au.pause();
+    on=0;
+    document.getElementById('pb').innerText='▶';
+  } else {
+    playTrack();
+  }
+}
+function chg(d){idx=(idx+d+tracks.length)%tracks.length;playTrack();}
+
+// ==========================================
+// 4. TRANSPORTS EN COMMUN (SNCF, RER, MÉTRO, TRAM)
+// ==========================================
 const transportLines = {
   "RER:A": {color:"#e3051c", dirs:["Saint-Germain / Cergy / Poissy","Boissy-St-Léger / Marne-la-Vallée"], stations:["La Défense","Charles de Gaulle - Étoile","Auber","Châtelet - Les Halles","Gare de Lyon","Nation","Vincennes","Val de Fontenay","Noisy-le-Grand","Torcy","Marne-la-Vallée Chessy","Saint-Germain-en-Laye","Nanterre-Préfecture","Cergy-Le-Haut","Poissy"]},
   "RER:B": {color:"#5291ce", dirs:["Aéroport CDG 2 / Mitry-Claye","Robinson / Saint-Rémy-lès-Chevreuse"], stations:["Gare du Nord","Châtelet - Les Halles","Saint-Michel Notre-Dame","Luxembourg","Port-Royal","Denfert-Rochereau","Cité Universitaire","Bourg-la-Reine","Antony","Massy - Palaiseau","Saint-Rémy-lès-Chevreuse","La Plaine - Stade de France","Le Bourget","Aulnay-sous-Bois","Aéroport Charles de Gaulle 2"]},
-  "RER:C": {color:"#ffce00", text:"#000", dirs:["Pontoise / Versailles Château / St-Quentin","Massy-Palaiseau / Dourdan / St-Martin d'Étampes"], stations:["Porte Maillot","Pereire - Levallois","Champ de Mars - Tour Eiffel","Invalides","Musée d'Orsay","Saint-Michel Notre-Dame","Gare d'Austerlitz","Bibliothèque F. Mitterrand","Juvisy","Brétigny","Versailles Château Rive Gauche","Saint-Quentin-en-Yvelines","Pontoise"]},
+  "RER:C": {color:"#ffce00", text:"#000", dirs:["Pontoise / Versailles Château / St-Quentin","Massy-Palaiseau / Dourdan / Étampes"], stations:["Porte Maillot","Pereire - Levallois","Champ de Mars - Tour Eiffel","Invalides","Musée d'Orsay","Saint-Michel Notre-Dame","Gare d'Austerlitz","Bibliothèque F. Mitterrand","Juvisy","Brétigny","Versailles Château Rive Gauche","Saint-Quentin-en-Yvelines","Pontoise"]},
   "RER:D": {color:"#00814f", dirs:["Creil / Orry-la-Ville / Goussainville","Melun / Corbeil-Essonnes / Malesherbes"], stations:["Gare du Nord","Châtelet - Les Halles","Gare de Lyon","Maisons-Alfort - Alfortville","Créteil Pompadour","Villeneuve-Saint-Georges","Juvisy","Évry - Courcouronnes","Corbeil-Essonnes","Melun","Stade de France - Saint-Denis","Saint-Denis","Garges - Sarcelles","Villiers-le-Bel","Goussainville","Creil"]},
   "RER:E": {color:"#c04191", dirs:["Nanterre-La-Folie / Haussmann St-Lazare","Chelles-Gournay / Tournan"], stations:["Nanterre-La-Folie","La Défense","Neuilly - Porte Maillot","Haussmann - Saint-Lazare","Magenta (Gare du Nord)","Rosa Parks","Pantin","Noisy-le-Sec","Bondy","Le Raincy - Villemomble","Gagny","Chelles - Gournay","Val de Fontenay","Nogent - Le Perreux","Villiers-sur-Marne","Roissy-en-Brie","Ozoir-la-Ferrière","Gretz-Armainvilliers","Tournan"]},
-"TRAIN:H": {color:"#8d5e2a", dirs:["Paris Gare du Nord","Pontoise / Persan-Beaumont / Luzarches"], stations:["Paris Gare du Nord","Saint-Denis","Épinay - Villetaneuse","Sarcelles - Saint-Brice","Enghien-les-Bains","Ermont - Eaubonne","Franconville","Pontoise","Valmondois","Persan - Beaumont","Luzarches"]},
+  "TRAIN:H": {color:"#8d5e2a", dirs:["Paris Gare du Nord","Pontoise / Persan-Beaumont / Luzarches"], stations:["Paris Gare du Nord","Saint-Denis","Épinay - Villetaneuse","Sarcelles - Saint-Brice","Enghien-les-Bains","Ermont - Eaubonne","Franconville","Pontoise","Valmondois","Persan - Beaumont","Luzarches"]},
   "TRAIN:J": {color:"#b6bf00", text:"#000", dirs:["Paris Saint-Lazare","Ermont-Eaubonne / Mantes-la-Jolie / Gisors"], stations:["Paris Saint-Lazare","Asnières-sur-Seine","Bois-Colombes","Colombes","Argenteuil","Cormeilles-en-Parisis","Conflans-Sainte-Honorine","Pontoise","Poissy","Mantes-la-Jolie","Ermont - Eaubonne"]},
   "TRAIN:K": {color:"#9f9825", dirs:["Paris Gare du Nord","Crépy-en-Valois"], stations:["Paris Gare du Nord","Aulnay-sous-Bois","Mitry - Claye","Compans","Dammartin - Juilly","Crépy-en-Valois"]},
-  "TRAIN:L": {color:"#7577c0", dirs:["Paris Saint-Lazare","Versailles Rive Droite / St-Nom-la-Bretèche / Cergy"], stations:["Paris Saint-Lazare","Pont Cardinet","Clichy - Levallois","Asnières-sur-Seine","Bécon-les-Bruyères","La Défense","Puteaux","Suresnes Mont-Valérien","Saint-Cloud","Versailles Rive Droite","Saint-Nom-la-Bretèche","Nanterre-Université","Cergy-Le-Haut"]},
+  "TRAIN:L": {color:"#7577c0", dirs:["Paris Saint-Lazare","Versailles Rive Droite / St-Nom / Cergy"], stations:["Paris Saint-Lazare","Pont Cardinet","Clichy - Levallois","Asnières-sur-Seine","Bécon-les-Bruyères","La Défense","Puteaux","Suresnes Mont-Valérien","Saint-Cloud","Versailles Rive Droite","Saint-Nom-la-Bretèche","Nanterre-Université","Cergy-Le-Haut"]},
   "TRAIN:N": {color:"#00a88f", dirs:["Paris Montparnasse","Rambouillet / Dreux / Mantes-la-Jolie"], stations:["Paris Montparnasse","Vanves - Malakoff","Clamart","Meudon","Bellevue","Sèvres Rive Gauche","Chaville Rive Gauche","Viroflay Rive Gauche","Versailles Chantiers","Saint-Quentin-en-Yvelines","Rambouillet","Plaisir - Grignon","Dreux"]},
   "TRAIN:P": {color:"#f28e42", dirs:["Paris Gare de l'Est","Meaux / Château-Thierry / Coulommiers / Provins"], stations:["Paris Gare de l'Est","Chelles - Gournay","Vaires - Torcy","Lagny - Thorigny","Esbly","Meaux","La Ferté-sous-Jouarre","Château-Thierry","Tournan","Coulommiers","Provins"]},
   "TRAIN:R": {color:"#e4b4d1", text:"#000", dirs:["Paris Gare de Lyon","Montereau / Montargis"], stations:["Paris Gare de Lyon","Melun","Bois-le-Roi","Fontainebleau - Avon","Moret - Veneux-les-Sablons","Montereau","Nemours - Saint-Pierre","Montargis"]},
@@ -289,7 +538,7 @@ const transportLines = {
   "TRAM:T5": {color:"#662483", dirs:["Marché de Saint-Denis","Garges - Sarcelles"], stations:["Marché de Saint-Denis","Basilique de Saint-Denis","Baudelaire","Roger Sémat","Guynemer","Petit Pierrefitte","Joncherolles","Suzanne Valadon","Mairie de Pierrefitte","Alcide d'Orbigny","Jacques Prévert","Butte Pinson","Les Cholettes","Les Flanades","Paul Valéry","Lochères","Garges - Sarcelles"]},
   "TRAM:T6": {color:"#e3051c", dirs:["Châtillon - Montrouge","Viroflay Rive Droite"], stations:["Châtillon - Montrouge","Vauban","Centre de Châtillon","Parc André Malraux","Division Leclerc","Soleil Levant","Hôpital Béclère","Mail de la Plaine","Pavé Blanc","Georges Pompidou","Georges Millandy","Meudon-la-Forêt","Vélizy 2","Dewoitine","Inovel Parc Nord","Louvois","Mairie de Vélizy","L'Onde","Robert Wagner","Viroflay Rive Gauche","Viroflay Rive Droite"]},
   "TRAM:T7": {color:"#8d5e2a", dirs:["Villejuif - Louis Aragon","Porte de l'Essonne"], stations:["Villejuif - Louis Aragon","Lamartine","Domaine Chérioux","Moulin Vert","Bretagne","Auguste Perret","Porte de Thiais","La Belle Épine","Place de la Logistique","Porte de Rungis","Saarinen","Robert Schuman","La Fraternelle","Hélène Boucher","Caroline Aigle","Cœur d'Orly","Aéroport d'Orly","Le Contin","Vieille Poste","Porte de l'Essonne"]},
-  "TRAM:T8": {color:"#837902", dirs:["Saint-Denis - Porte de Paris","Villetaneuse-Université / Épinay-Orgemont"], stations:["Saint-Denis - Porte de Paris","Pierre de Geyter","Gare de Saint-Denis","Paul Éluard","Delaunay - Belleville","César","Jean Vilar","Pablo Neruda","Villetaneuse-Université","Les Mobiles","Les Béatus","Rose Bertin","Lacépède","Gilbert Bonnemaison","Épinay-sur-Seine - Gare","Épinay - Orgemont"]},
+"TRAM:T8": {color:"#837902", dirs:["Saint-Denis - Porte de Paris","Villetaneuse-Université / Épinay-Orgemont"], stations:["Saint-Denis - Porte de Paris","Pierre de Geyter","Gare de Saint-Denis","Paul Éluard","Delaunay - Belleville","César","Jean Vilar","Pablo Neruda","Villetaneuse-Université","Les Mobiles","Les Béatus","Rose Bertin","Lacépède","Gilbert Bonnemaison","Épinay-sur-Seine - Gare","Épinay - Orgemont"]},
   "TRAM:T9": {color:"#5291ce", dirs:["Porte de Choisy","Orly - Gaston Viens"], stations:["Porte de Choisy","Châteaudun - Barbès","Cimetière Parisien d'Ivry","La Briqueterie","Germaine Tailleferre","Beethoven - Concorde","Musée MAC VAL","Mairie de Vitry-sur-Seine","Camille Groult","Constant Coquelin","Watteau - Rondenay","Trois Communes","Verdun - Hoche","Rouget de Lisle","Carle - Darthé","Four - Peary","Christophe Colomb","Saules","Les Saules","Orly - Gaston Viens"]},
   "TRAM:T11": {color:"#f28e42", dirs:["Épinay-sur-Seine","Le Bourget"], stations:["Épinay-sur-Seine","Épinay - Villetaneuse","Villetaneuse-Université","Pierrefitte - Stains","Stains - La Cerisaie","Dugny - La Courneuve","Le Bourget"]},
   "TRAM:T13": {color:"#8d5e2a", dirs:["Saint-Germain-en-Laye","Saint-Cyr"], stations:["Saint-Germain-en-Laye","Camp des Loges","Lisière Pereire","Fourqueux - Bel-Air","Mareil-Marly","L'Étang - Les Sablons","Saint-Nom-la-Bretèche","Noisy-le-Roi","Bailly","Allée Royale","Les Portes de Saint-Cyr","Saint-Cyr"]}
@@ -321,7 +570,6 @@ function fetchTransports(){
   const lineShort = lineKey.split(':')[1];
   const now = new Date();
   
-  // Calcul des 2 prochains passages par direction
   const isTrainOrRer = lineKey.startsWith('RER') || lineKey.startsWith('TRAIN');
   const step1 = isTrainOrRer ? (2 + Math.floor(Math.random()*5)) : (1 + Math.floor(Math.random()*3));
   const step2 = step1 + (isTrainOrRer ? (7 + Math.floor(Math.random()*6)) : (3 + Math.floor(Math.random()*4)));
@@ -342,105 +590,12 @@ function fetchTransports(){
     </div>
   `;
 
-  // Mise à jour du lien direct Transilien / IDFM pour cette gare
   document.getElementById('sncf-link').href = `https://www.transilien.com/fr/horaires/prochains-departs?departure=${encodeURIComponent(stationName)}`;
 }
 
-// Calcul Zmanim secours & en ligne
-function calcLocalZmanim(){
-  const d=new Date(),start=new Date(d.getFullYear(),0,0),day=Math.floor((d-start)/86400000);
-  const dec=23.44*Math.sin((2*Math.PI/365)*(day-81))*Math.PI/180,lat=48.8566*Math.PI/180;
-  const ha=Math.acos(-Math.tan(lat)*Math.tan(dec))*180/Math.PI;
-  const noon=12.85-(2.35/15),sr=noon-(ha/15),ss=noon+(ha/15);
-  const f=h=>{let hr=Math.floor(h),mn=Math.round((h-hr)*60);if(mn===60){hr++;mn=0}return `${String(hr).padStart(2,'0')}:${String(mn).padStart(2,'0')}`};
-  const list=[['Alot HaShahar',f(sr-1.2)],['Netz (Lever)',f(sr)],['Fin Shema',f(sr+(ss-sr)*0.25)],['Hatsot',f(noon)],['Minha Gedola',f(noon+0.5)],['Shkia (Coucher)',f(ss)],['Tzeit (Étoiles)',f(ss+0.65)]];
-  document.getElementById('zman-list').innerHTML=list.map(x=>`<div class="s-row"><span>${x[0]}</span><span style="color:#60a5fa">${x[1]}</span></div>`).join('');
-  document.getElementById('top-z').innerText=`Shkia ${f(ss)}`;
-  document.getElementById('heb-date').innerText=new Intl.DateTimeFormat('fr-FR-u-ca-hebrew',{day:'numeric',month:'long',year:'numeric'}).format(d);
-}
-calcLocalZmanim();
-
-async function fetchOnlineZmanim(la,lo){
-  try{
-    const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'Europe/Paris';
-    const r=await fetch(`https://www.hebcal.com/zmanim?cfg=json&latitude=${la}&longitude=${lo}&tzid=${encodeURIComponent(tz)}`);
-    const j=await r.json(),t=j.times;
-    if(!t)return;
-    const fmt=iso=>iso?new Date(iso).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}):'--:--';
-    const list=[['Alot HaShahar',fmt(t.alotHaShachar)],['Netz (Lever)',fmt(t.sunrise)],['Fin Shema (GRA)',fmt(t.sofZmanShma)],['Hatsot',fmt(t.chatzot)],['Minha Gedola',fmt(t.minchaGedola)],['Shkia (Coucher)',fmt(t.sunset)],['Tzeit (Étoiles)',fmt(t.tzeit7083deg)]];
-    document.getElementById('zman-list').innerHTML=list.map(x=>`<div class="s-row"><span>${x[0]}</span><span style="color:#60a5fa">${x[1]}</span></div>`).join('');
-    document.getElementById('top-z').innerText=`Shkia ${fmt(t.sunset)}`;
-  }catch(e){}
-}
-fetchOnlineZmanim(48.8566,2.3522);
-
-let sim=null;
-function toggleSim(){
-  if(sim){clearInterval(sim);sim=null;document.getElementById('sp').innerText='0';document.getElementById('gs').innerText='GPS / Simu';document.getElementById('d').style.background='#ff9100';return;}
-  if(watchId!==null){navigator.geolocation.clearWatch(watchId);watchId=null;}
-  document.getElementById('gs').innerText='Simulation';
-  document.getElementById('d').style.background='#3b82f6';
-  let v=0;
-  sim=setInterval(()=>{v=v<25?v+1:23+Math.floor(Math.random()*3);document.getElementById('sp').innerText=v;},300);
-}
-
-let watchId=null,lastMapUpdate=0;
-function initGPS(){
-  if(!navigator.geolocation){document.getElementById('gs').innerText='GPS indisponible';return;}
-  if(sim){clearInterval(sim);sim=null;}
-  if(watchId!==null)navigator.geolocation.clearWatch(watchId);
-  document.getElementById('gs').innerText='Recherche GPS...';
-  
-  watchId=navigator.geolocation.watchPosition(p=>{
-    const la=p.coords.latitude,lo=p.coords.longitude;
-    document.getElementById('gs').innerText='GPS Actif';
-    document.getElementById('d').style.background='#00e676';
-    let speedKmh = (p.coords.speed !== null && p.coords.speed >= 0)?Math.round(p.coords.speed * 3.6):0;
-    document.getElementById('sp').innerText = speedKmh;
-
-    const now=Date.now();
-    if(now-lastMapUpdate>8000){
-      lastMapUpdate=now;
-      document.getElementById('gmap').src=`https://www.openstreetmap.org/export/embed.html?bbox=${lo-0.005}%2C${la-0.005}%2C${lo+0.005}%2C${la+0.005}&layer=mapnik&marker=${la}%2C${lo}`;
-      fetchOnlineZmanim(la,lo);
-    }},err=>{
-    document.getElementById('gs').innerText='GPS Bloqué / Erreur';
-    document.getElementById('d').style.background='#ef4444';
-  },{enableHighAccuracy:true,maximumAge:5000,timeout:15000});
-}
-initGPS();
-
-const radios=[
-  {n:"Radio Shalom", u:"https://radioshalombesancon.ice.infomaniak.ch/radioshalombesancon-128.mp3"},
-  {n:"Radio J", u:"https://radioj.ice.infomaniak.ch/radioj-128.mp3"},
-  {n:"RCJ", u:"https://rcj.ice.infomaniak.ch/rcj-128.mp3"}
-];
-let tracks=[...radios],idx=0,on=0,au=document.getElementById('au');
-
-function resetRad(){tracks=[...radios];idx=0;playTrack();}
-function loadFiles(files){
-  if(!files.length)return;
-  tracks=Array.from(files).map(f=>({n:f.name.replace(/\.[^/.]+$/,""),u:URL.createObjectURL(f)}));
-  idx=0;playTrack();
-}
-function playTrack(){
-  document.getElementById('st').innerText=tracks[idx].n + " (Chargement...)";
-  au.src=tracks[idx].u;
-  au.load();
-  au.play().then(()=>{
-    on=1;document.getElementById('pb').innerText='⏸';
-    document.getElementById('st').innerText=tracks[idx].n;
-  }).catch(e=>{
-    on=0;document.getElementById('pb').innerText='▶';
-    document.getElementById('st').innerText='Erreur de flux (Tap 📻)';
-  });
-}
-function ply(){
-  if(on){au.pause();on=0;document.getElementById('pb').innerText='▶';document.getElementById('st').innerText+=' (Pause)';}
-  else{playTrack();}
-}
-function chg(d){idx=(idx+d+tracks.length)%tracks.length;playTrack();}
-
+// ==========================================
+// 5. CAMÉRA RÉTROVISEUR
+// ==========================================
 let stream=null;
 async function toggleRetro(){
   const vid=document.getElementById('retro-vid'),txt=document.getElementById('retro-txt');
