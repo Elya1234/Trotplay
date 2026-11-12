@@ -288,4 +288,83 @@ fetchOnlineZmanim(48.8566,2.3522);
 
 let sim=null;
 function toggleSim(){
-  if(sim){clearInterval(sim);sim=null;document.getElementById('sp')
+if(sim){clearInterval(sim);sim=null;document.getElementById('sp').innerText='0';document.getElementById('gs').innerText='GPS / Simu';document.getElementById('d').style.background='#ff9100';return;}
+  if(watchId!==null){navigator.geolocation.clearWatch(watchId);watchId=null;}
+  document.getElementById('gs').innerText='Simulation';
+  document.getElementById('d').style.background='#3b82f6';
+  let v=0;
+  sim=setInterval(()=>{v=v<25?v+1:23+Math.floor(Math.random()*3);document.getElementById('sp').innerText=v;},300);
+}
+
+let watchId=null,lastMapUpdate=0;
+function initGPS(){
+  if(!navigator.geolocation){document.getElementById('gs').innerText='GPS indisponible';return;}
+  if(sim){clearInterval(sim);sim=null;}
+  if(watchId!==null)navigator.geolocation.clearWatch(watchId);
+  document.getElementById('gs').innerText='Recherche GPS...';
+  
+  watchId=navigator.geolocation.watchPosition(p=>{
+    const la=p.coords.latitude,lo=p.coords.longitude;
+    document.getElementById('gs').innerText='GPS Actif';
+    document.getElementById('d').style.background='#00e676';
+    let speedKmh = (p.coords.speed !== null && p.coords.speed >= 0)?Math.round(p.coords.speed * 3.6):0;
+    document.getElementById('sp').innerText = speedKmh;
+
+    const now=Date.now();
+    if(now-lastMapUpdate>8000){
+      lastMapUpdate=now;
+      document.getElementById('gmap').src=`https://www.openstreetmap.org/export/embed.html?bbox=${lo-0.005}%2C${la-0.005}%2C${lo+0.005}%2C${la+0.005}&layer=mapnik&marker=${la}%2C${lo}`;
+      fetchOnlineZmanim(la,lo);
+    }
+  },err=>{
+    document.getElementById('gs').innerText='GPS Bloqué / Erreur';
+    document.getElementById('d').style.background='#ef4444';
+  },{enableHighAccuracy:true,maximumAge:5000,timeout:15000});
+}
+initGPS();
+
+const radios=[
+  {n:"Radio Shalom", u:"https://radioshalombesancon.ice.infomaniak.ch/radioshalombesancon-128.mp3"},
+  {n:"Radio J", u:"https://radioj.ice.infomaniak.ch/radioj-128.mp3"},
+  {n:"RCJ", u:"https://rcj.ice.infomaniak.ch/rcj-128.mp3"}
+];
+let tracks=[...radios],idx=0,on=0,au=document.getElementById('au');
+
+function resetRad(){tracks=[...radios];idx=0;playTrack();}
+function loadFiles(files){
+  if(!files.length)return;
+  tracks=Array.from(files).map(f=>({n:f.name.replace(/\.[^/.]+$/,""),u:URL.createObjectURL(f)}));
+  idx=0;playTrack();
+}
+function playTrack(){
+  document.getElementById('st').innerText=tracks[idx].n + " (Chargement...)";
+  au.src=tracks[idx].u;
+  au.load();
+  au.play().then(()=>{
+    on=1;document.getElementById('pb').innerText='⏸';
+    document.getElementById('st').innerText=tracks[idx].n;
+  }).catch(e=>{
+    on=0;document.getElementById('pb').innerText='▶';
+    document.getElementById('st').innerText='Erreur de flux (Tap 📻)';
+  });
+}
+function ply(){
+  if(on){au.pause();on=0;document.getElementById('pb').innerText='▶';document.getElementById('st').innerText+=' (Pause)';}
+  else{playTrack();}
+}
+function chg(d){idx=(idx+d+tracks.length)%tracks.length;playTrack();}
+
+let stream=null;
+async function toggleRetro(){
+  const vid=document.getElementById('retro-vid'),txt=document.getElementById('retro-txt');
+  if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;vid.style.display='none';txt.style.display='block';return;}
+  try{
+    stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}},audio:false});
+    vid.srcObject=stream;vid.style.display='block';txt.style.display='none';
+  }catch(e){
+    txt.innerHTML="⚠️ Caméra bloquée<br><span style='font-size:9px;color:#cbd5e1'>Vérifie le HTTPS / Safari</span>";
+  }
+}
+</script>
+</body>
+</html>
