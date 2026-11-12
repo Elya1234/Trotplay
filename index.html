@@ -186,7 +186,7 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:6px}
   <div class="act-btn glass" onclick="openMod('m-tora')"><span style="font-size:20px">📖</span><span>Prière Route</span></div>
 </div>
 
-<audio id="au" preload="none"></audio>
+<audio id="au" crossorigin="anonymous" preload="none"></audio>
 
 <script>
 // Horloge
@@ -287,14 +287,12 @@ function initGPS(){
     document.getElementById('gs').innerText='GPS Actif';
     document.getElementById('d').style.background='#00e676';
     
-    // Calcul vitesse en km/h (vitesse GPS en m/s multipliée par 3.6)
     let speedKmh = 0;
     if(p.coords.speed !== null && p.coords.speed >= 0){
       speedKmh = Math.round(p.coords.speed * 3.6);
     }
     document.getElementById('sp').innerText = speedKmh;
 
-    // Mise à jour de la carte toutes les 8 secondes max pour ne pas saturer l'iframe
     const now=Date.now();
     if(now-lastMapUpdate>8000){
       lastMapUpdate=now;
@@ -308,7 +306,7 @@ function initGPS(){
 }
 initGPS();
 
-// Lecteur Radio & MP3 (Flux vérifiés et stables)
+// Lecteur Radio & MP3 (Flux stables HTTPS sécurisés)
 const radios=[
   {n:"Radio Shalom", u:"https://radioshalombesancon.ice.infomaniak.ch/radioshalombesancon-128.mp3"},
   {n:"Radio J", u:"https://radioj.ice.infomaniak.ch/radioj-128.mp3"},
@@ -323,20 +321,33 @@ function loadFiles(files){
   idx=0;playTrack();
 }
 function playTrack(){
-  document.getElementById('st').innerText=tracks[idx].n;
+  document.getElementById('st').innerText=tracks[idx].n + " (Chargement...)";
   au.src=tracks[idx].u;
+  au.load();
   au.play().then(()=>{
-    on=1;document.getElementById('pb').innerText='⏸';
+    on=1;
+    document.getElementById('pb').innerText='⏸';
+    document.getElementById('st').innerText=tracks[idx].n;
   }).catch(e=>{
-    on=0;document.getElementById('pb').innerText='▶';
-    document.getElementById('st').innerText='Erreur de flux radio';
+    on=0;
+    document.getElementById('pb').innerText='▶';
+    document.getElementById('st').innerText='Erreur de flux (Tap 📻)';
   });
 }
 function ply(){
-  if(on){au.pause();on=0;document.getElementById('pb').innerText='▶';}
-  else{playTrack();}
+  if(on){
+    au.pause();
+    on=0;
+    document.getElementById('pb').innerText='▶';
+    document.getElementById('st').innerText+=' (Pause)';
+  } else {
+    playTrack();
+  }
 }
-function chg(d){idx=(idx+d+tracks.length)%tracks.length;playTrack();}
+function chg(d){
+  idx=(idx+d+tracks.length)%tracks.length;
+  playTrack();
+}
 
 // Caméra Rétroviseur
 let stream=null;
