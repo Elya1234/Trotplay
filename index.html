@@ -285,7 +285,7 @@ function openMod(id){closeMod();document.getElementById(id).style.display='flex'
 function closeMod(){document.querySelectorAll('.modal').forEach(m=>m.style.display='none');}
 
 // ==========================================
-// 1. BLUETOOTH SCOOTER (iScooter i10 Max UART)
+// 1. BLUETOOTH SCOOTER (iScooter / MiniRobot UART)
 // ==========================================
 let bluetoothDevice = null, btCharacteristicWrite = null, btCharacteristicRead = null, isScooterConnected = false;
 let lightState = false, lockState = false, currentMode = 0;
@@ -303,9 +303,9 @@ async function toggleBluetooth(){
   try{
     document.getElementById('bt-txt').innerText = 'Recherche...';
     bluetoothDevice = await navigator.bluetooth.requestDevice({
-      filters: [{namePrefix: 'iScooter'}, {namePrefix: '
-           return;
-  });
+      filters: [{namePrefix: 'iScooter'}, {namePrefix: 'ESCOOTER'}, {namePrefix: 'i10'}, {namePrefix: 'MiniRobot'}, {namePrefix: 'HC-'}],
+      optionalServices: ['0000ffe0-0000-1000-8000-00805f9b34fb', '6e400001-b5a3-f393-e0a9-e50e24dcca9e']
+    });
     bluetoothDevice.addEventListener('gattserverdisconnected', onScooterDisconnected);
     const server = await bluetoothDevice.gatt.connect();
     
@@ -343,10 +343,10 @@ function onScooterDisconnected(){
 function handleScooterData(event){
   const bytes = new Uint8Array(event.target.value.buffer);
   if(bytes.length >= 2){
-    let speed = bytes[2] !== undefined ? bytes[2] : bytes[1];
-    if(speed >= 0 && speed < 120) {
-      document.getElementById('sp').innerText = speed;
-    }
+    // Extraction dynamique de la vitesse (index 1 ou 2 selon le firmware iScooter)
+    let speed = bytes[2] !== undefined && bytes[2] < 120 ? bytes[2] : (bytes[1] < 120 ? bytes[1] : 0);
+    document.getElementById('sp').innerText = speed;
+
     if(bytes.length >= 5) {
       let batt = bytes[4] || bytes[3];
       if(batt <= 100) document.getElementById('bt-batt').innerText = batt + '%';
@@ -425,8 +425,7 @@ async function fetchOnlineZmanim(la,lo){
     renderZmanim(list);
   }catch(e){}
 }
-
-function renderZmanim(list){
+  function renderZmanim(list){
   const now = new Date();
   let nextFound = null;
   const html = list.map(item => {
@@ -527,7 +526,7 @@ const transportLines = {
   "METRO:11": {color:"#704b1c", dirs:["Châtelet","Rosny - Bois-Perrier"], stations:["Châtelet","Hôtel de Ville","Rambuteau","Arts et Métiers","République","Goncourt","Belleville","Pyrénées","Jourdain","Place des Fêtes","Télégraphe","Porte des Lilas","Mairie des Lilas","Serge Gainsbourg","Romainville - Carnot","Montreuil - Hôpital","La Dhuys","Coteaux Beauclair","Rosny - Bois-Perrier"]},
   "METRO:12": {color:"#007852", dirs:["Mairie d'Aubervilliers","Mairie d'Issy"], stations:["Mairie d'Aubervilliers","Aimé Césaire","Front Populaire","Porte de la Chapelle","Marx Dormoy","Marcadet - Poissonniers","Jules Joffrin","Lamarck - Caulaincourt","Abbesses","Pigalle","Saint-Georges","Notre-Dame-de-Lorette","Trinité","Saint-Lazare","Madeleine","Concorde","Assemblée Nationale","Solférino","Rue du Bac","Sèvres - Babylone","Rennes","Notre-Dame-des-Champs","Montparnasse - Bienvenüe","Falguière","Pasteur","Volontaires","Vaugirard","Convention","Porte de Versailles","Corentin Celton","Mairie d'Issy"]},
   "METRO:13": {color:"#6ec4e8", text:"#000", dirs:["Saint-Denis / Asnières-Gennevilliers","Châtillon - Montrouge"], stations:["Saint-Denis - Université","Basilique de Saint-Denis","Saint-Denis - Porte de Paris","Carrefour Pleyel","Mairie de Saint-Ouen","Garibaldi","Porte de Saint-Ouen","Asnières - Gennevilliers Les Courtilles","Les Agnettes","Gabriel Péri","Mairie de Clichy","Porte de Clichy","Brochant","La Fourche","Place de Clichy","Liège","Saint-Lazare","Miromesnil","Champs-Élysées - Clemenceau","Invalides","Varenne","Saint-François-Xavier","Duroc","Montparnasse - Bienvenüe","Gaîté","Pernety","Plaisance","Porte de Vanves","Malakoff - Plateau de Vanves","Châtillon - Montrouge"]},
-"METRO:14": {color:"#62259d", dirs:["Saint-Denis Pleyel","Aéroport d'Orly"], stations:["Saint-Denis Pleyel","Mairie de Saint-Ouen","Saint-Ouen","Porte de Clichy","Pont Cardinet","Saint-Lazare","Madeleine","Pyramides","Châtelet","Gare de Lyon","Bercy","Cour Saint-Émilion","Bibliothèque François Mitterrand","Olympiades","Maison Blanche","Hôpital Bicêtre","Villejuif - Gustave Roussy","L'Haÿ-les-Roses","Chevilly-Larue","Thiais - Orly","Aéroport d'Orly"]},
+  "METRO:14": {color:"#62259d", dirs:["Saint-Denis Pleyel","Aéroport d'Orly"], stations:["Saint-Denis Pleyel","Mairie de Saint-Ouen","Saint-Ouen","Porte de Clichy","Pont Cardinet","Saint-Lazare","Madeleine","Pyramides","Châtelet","Gare de Lyon","Bercy","Cour Saint-Émilion","Bibliothèque François Mitterrand","Olympiades","Maison Blanche","Hôpital Bicêtre","Villejuif - Gustave Roussy","L'Haÿ-les-Roses","Chevilly-Larue","Thiais - Orly","Aéroport d'Orly"]},
   "TRAM:T1": {color:"#003ca6", dirs:["Asnières - Quatre Routes","Noisy-le-Sec"], stations:["Asnières - Quatre Routes","Les Courtilles","Gennevilliers","Villeneuve-la-Garenne","L'Île-Saint-Denis","Gare de Saint-Denis","Basilique de Saint-Denis","La Courneuve - 8 Mai 1945","Drancy - Avenir","Bobigny - Pablo Picasso","Pont de Bondy","Gare de Noisy-le-Sec"]},
   "TRAM:T2": {color:"#c04191", dirs:["Pont de Bezons","Porte de Versailles"], stations:["Pont de Bezons","Parc Pierre Lagravère","Charlebourg","Les Fauvelles","La Défense","Puteaux","Belvédère","Suresnes Longchamp","Les Coteaux","Saint-Cloud","Parc de Saint-Cloud","Musée de Sèvres","Brimborion","Meudon-sur-Seine","Les Moulineaux","Jacques-Henri Lartigue","Issy - Val de Seine","Henri Farman","Suzanne Lenglen","Porte de Versailles"]},
   "TRAM:T3a": {color:"#ff7e2e", dirs:["Pont du Garigliano","Porte de Vincennes"], stations:["Pont du Garigliano","Balard","Porte de Versailles","Georges Brassens","Brancion","Porte de Vanves","Didot","Jean Moulin","Porte d'Orléans","Montsouris","Cité Universitaire","Stade Charléty","Poterne des Peupliers","Porte d'Italie","Porte de Choisy","Porte d'Ivry","Maryse Bastié","Avenue de France","Baron Le Roy","Porte de Charenton","Porte Dorée","Montempoivre","Alexandra David-Néel","Porte de Vincennes"]},
@@ -590,6 +589,9 @@ function fetchTransports(){
 
   document.getElementById('sncf-link').href = `https://www.transilien.com/fr/horaires/prochains-departs?departure=${encodeURIComponent(stationName)}`;
 }
+
+// Initialisation des stations au chargement
+updateStationsList();
 
 // ==========================================
 // 5. MAPS & GPS
