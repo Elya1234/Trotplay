@@ -19,47 +19,46 @@ body{background:var(--bg);color:var(--txt);height:100dvh;display:flex;flex-direc
 .dock{width:56px;border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;padding:4px 0;flex-shrink:0}
 .ico{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;border:none;color:#fff;cursor:pointer;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.25)}
 .ico:active,.act-btn:active,.mbtn:active{transform:scale(.94)}
-.grid{flex:1;display:grid;grid-template-columns:1.3fr 1fr;gap:6px;padding:6px;min-height:0}
-.mapbox{position:relative;border-radius:18px;overflow:hidden;background:#111;display:flex;flex-direction:column}
-.nav-bar{position:absolute;top:6px;left:6px;right:6px;z-index:15;display:flex;gap:4px}
-.nav-bar input{flex:1;background:rgba(15,23,42,.88);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 10px;border-radius:10px;font-size:11px;font-weight:600;outline:none}
-.nav-bar button,.nav-bar a{background:#2563eb;color:#fff;border:none;border-radius:10px;padding:0 10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none}
+.grid{flex:1;display:grid;grid-template-columns:1.5fr 1fr;gap:8px;padding:8px;min-height:0}
+.mapbox{position:relative;border-radius:20px;overflow:hidden;background:#111;display:flex;flex-direction:column}
+.nav-bar{position:absolute;top:8px;left:8px;right:8px;z-index:15;display:flex;gap:6px}
+.nav-bar input{flex:1;background:rgba(15,23,42,.88);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.25);color:#fff;padding:8px 12px;border-radius:12px;font-size:12px;font-weight:600;outline:none}
+.nav-bar button,.nav-bar a{background:#2563eb;color:#fff;border:none;border-radius:12px;padding:0 12px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none}
 iframe{width:100%;height:100%;border:none;filter:var(--mapf)}
-.rec{position:absolute;bottom:8px;right:8px;z-index:10;background:rgba(15,23,42,.88);color:#fff;border-radius:10px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer}
-.col{display:flex;flex-direction:column;gap:6px;min-height:0}
-.card{flex:1;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px;min-height:0;position:relative}
-.spd{font-size:46px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
-.mbtn{color:var(--txt);width:34px;height:34px;border-radius:50%;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;border:none}
-.tag{background:#3b82f6;color:#fff;padding:3px 6px;border-radius:6px;font-size:10px;font-weight:700;border:none;cursor:pointer;text-decoration:none}
-.bot{height:84px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:6px;padding:6px;flex-shrink:0}
-.act-btn{border-radius:14px;color:var(--txt);font-size:12px;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;text-decoration:none}
-.mini-retro{position:relative;background:#000;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.rec{position:absolute;bottom:10px;right:10px;z-index:10;background:rgba(15,23,42,.88);color:#fff;border-radius:12px;padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.col{display:flex;flex-direction:column;gap:8px;min-height:0}
+.card{flex:1;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;min-height:0;position:relative}
+.spd{font-size:52px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.mbtn{color:var(--txt);width:38px;height:38px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;border:none}
+.tag{background:#3b82f6;color:#fff;padding:4px 7px;border-radius:8px;font-size:10px;font-weight:700;border:none;cursor:pointer;text-decoration:none}
+.bot{height:94px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1.8fr 1fr;gap:8px;padding:8px;flex-shrink:0}
+.act-btn{border-radius:16px;color:var(--txt);font-size:13px;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;text-decoration:none}
+.mini-retro{position:relative;background:#000;border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer}
 #retro-vid{width:100%;height:100%;object-fit:cover;display:none;transform:scaleX(-1)}
-#retro-txt{font-size:11px;font-weight:700;color:#00e676;text-align:center;padding:4px}
-.modal{display:none;position:absolute;inset:6px;z-index:2000;border-radius:18px;padding:12px;flex-direction:column;justify-content:space-between;background:rgba(15,23,42,.97);backdrop-filter:blur(25px);color:#fff}
-.s-list{overflow-y:auto;display:flex;flex-direction:column;gap:5px;margin:6px 0;flex:1}
-.s-row{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-radius:10px;background:rgba(255,255,255,.08);font-size:12px;font-weight:700;color:#fff}
+#retro-txt{font-size:12px;font-weight:700;color:#00e676;text-align:center;padding:6px}
+.modal{display:none;position:absolute;inset:8px;z-index:2000;border-radius:20px;padding:14px 16px;flex-direction:column;justify-content:space-between;background:rgba(15,23,42,.97);backdrop-filter:blur(25px);color:#fff}
+.s-list{overflow-y:auto;display:flex;flex-direction:column;gap:6px;margin:8px 0;flex:1}
+.s-row{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,.08);font-size:13px;font-weight:700;color:#fff}
 .s-row.past{opacity:.4;text-decoration:line-through}
 .s-row.next{background:rgba(16,185,129,.22);border:1px solid #10b981}
-.alha-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0;flex:1;overflow-y:auto}
-.alha-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:8px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;text-decoration:none;gap:2px}
-.alha-card span:first-child{font-size:14px;font-weight:800;color:#fbbf24}
-.alha-card span:last-child{font-size:10px;color:#cbd5e1}
-select{width:100%;padding:6px;border-radius:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:700;outline:none}
+.alha-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0;flex:1;overflow-y:auto}
+.alha-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;text-decoration:none;gap:4px}
+.alha-card span:first-child{font-size:15px;font-weight:800;color:#fbbf24}
+.alha-card span:last-child{font-size:11px;color:#cbd5e1}
+select{width:100%;padding:8px;border-radius:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:12px;font-weight:700;outline:none}
 select option, optgroup{background:#0f172a;color:#fff}
-input[type=range]{width:100%;accent-color:#3b82f6;height:4px}
-.badge{padding:2px 5px;border-radius:4px;font-size:10px;font-weight:900;margin-right:4px;display:inline-block}
-
-.ctrl-btn{padding:4px 8px;border-radius:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:10px;font-weight:700;cursor:pointer}
+input[type=range]{width:100%;accent-color:#3b82f6;height:5px}
+.ctrl-btn{padding:5px 10px;border-radius:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:700;cursor:pointer}
 .ctrl-btn.active{background:#3b82f6;border-color:#60a5fa}
+.badge{padding:2px 7px;border-radius:6px;font-size:11px;font-weight:900;margin-right:6px;display:inline-block}
 
 @media(orientation:portrait){
 .main{flex-direction:column}
-.dock{width:100%;height:48px;flex-direction:row;border-right:none;border-bottom:1px solid var(--border)}
-.grid{grid-template-columns:1fr;grid-template-rows:1fr 1.1fr}
+.dock{width:100%;height:58px;flex-direction:row;border-right:none;border-bottom:1px solid var(--border)}
+.grid{grid-template-columns:1fr;grid-template-rows:1.3fr 1fr}
 .col{flex-direction:row}
-.spd{font-size:38px}
-.bot{height:82px}
+.spd{font-size:42px}
+.bot{height:94px}
 }
 </style>
 </head>
@@ -69,67 +68,103 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:4px}
   <div class="pill glass" onclick="toggleSim()"><div class="dot" id="d"></div><span id="gs">GPS</span></div>
   <div class="pill glass" onclick="toggleBluetooth()" style="color:#38bdf8;border-color:rgba(56,189,248,.4)"><div class="dot" id="bt-dot" style="background:#ef4444"></div><span id="bt-txt">Scooter BT</span></div>
   <div class="pill glass" onclick="openMod('m-zman')" style="color:#34d399;border-color:rgba(52,211,153,.4)">✡️ <span id="top-z">Calcul...</span></div>
-  <div id="clk" style="font-size:13px;font-variant-numeric:tabular-nums">--:--</div>
-  <button class="pill glass" onclick="theme()" id="tbtn" style="font-size:11px">🌙</button>
+  <div id="clk" style="font-size:14px;font-variant-numeric:tabular-nums">--:--</div>
+  <button class="pill glass" onclick="theme()" id="tbtn" style="font-size:12px">🌙</button>
 </div>
 
 <div class="main">
-  <!-- MODALE HORAIRES HALAKHIQUES ET SHABBAT COMPLETS -->
+  <!-- MODALE ZMANIM & SHABBAT COMPLETS -->
   <div id="m-zman" class="modal glass">
     <div style="display:flex;justify-content:space-between;align-items:center">
-      <span style="font-size:14px;font-weight:800">✡️ Zmanim & Shabbat</span>
-      <span id="heb-date" style="font-size:11px;color:#60a5fa;font-weight:700"></span>
-      <button onclick="closeMod()" style="background:#ef4444;color:#fff;border:none;border-radius:6px;padding:4px 8px;font-weight:700;font-size:11px">Fermer</button>
+      <span style="font-size:15px;font-weight:800">✡️ Zmanim, Shabbat & Fêtes</span>
+      <span id="heb-date" style="font-size:12px;color:#60a5fa;font-weight:700"></span>
+      <button onclick="closeMod()" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:12px">Fermer</button>
     </div>
     <div id="zman-list" class="s-list"></div>
-    <a href="shortcuts://run-shortcut?name=CalJ" style="background:#2563eb;color:#fff;text-align:center;padding:8px;border-radius:10px;text-decoration:none;font-weight:700;font-size:12px">Ouvrir l'application CalJ</a>
+    <a href="shortcuts://run-shortcut?name=CalJ" style="background:#2563eb;color:#fff;text-align:center;padding:10px;border-radius:12px;text-decoration:none;font-weight:700;font-size:13px">Ouvrir l'application CalJ</a>
   </div>
 
-  <!-- MODALE TRANSPORTS RATP / SNCF -->
+  <!-- MODALE TRANSPORTS IDF COMPLÈTE -->
   <div id="m-navigo" class="modal glass">
     <div style="display:flex;justify-content:space-between;align-items:center">
-      <span style="font-size:14px;font-weight:800;color:#38bdf8">🚆 Transports IDF</span>
-      <button onclick="closeMod()" style="background:#ef4444;color:#fff;border:none;border-radius:6px;padding:4px 8px;font-weight:700;font-size:11px">Fermer</button>
+      <span style="font-size:15px;font-weight:800;color:#38bdf8">🚆 Transports IDF (SNCF / RATP)</span>
+      <button onclick="closeMod()" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:12px">Fermer</button>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:4px;margin:4px 0">
+    <div style="display:grid;grid-template-columns:1fr 1.3fr;gap:6px;margin:6px 0">
       <select id="line-select" onchange="updateStationsList()">
-        <optgroup label="RER">
+        <optgroup label="RER (SNCF / RATP)">
           <option value="RER:A">RER A</option>
           <option value="RER:B">RER B</option>
-          <option value="RER:C">RER C</option>
-          <option value="RER:D">RER D</option>
-          <option value="RER:E" selected>RER E</option>
+          <option value="RER:C">RER C (SNCF)</option>
+          <option value="RER:D">RER D (SNCF)</option>
+          <option value="RER:E" selected>RER E (SNCF)</option>
+        </optgroup>
+        <optgroup label="Trains Transilien (SNCF)">
+          <option value="TRAIN:H">Ligne H (Nord)</option>
+          <option value="TRAIN:J">Ligne J (St-Lazare)</option>
+          <option value="TRAIN:K">Ligne K (Nord)</option>
+          <option value="TRAIN:L">Ligne L (St-Lazare)</option>
+          <option value="TRAIN:N">Ligne N (Montparnasse)</option>
+          <option value="TRAIN:P">Ligne P (Est)</option>
+          <option value="TRAIN:R">Ligne R (Lyon)</option>
+          <option value="TRAIN:U">Ligne U (La Défense)</option>
         </optgroup>
         <optgroup label="Métro Paris">
           <option value="METRO:1">Métro 1</option>
           <option value="METRO:2">Métro 2</option>
+          <option value="METRO:3">Métro 3</option>
+          <option value="METRO:4">Métro 4</option>
           <option value="METRO:5">Métro 5</option>
+          <option value="METRO:6">Métro 6</option>
           <option value="METRO:7">Métro 7</option>
+          <option value="METRO:8">Métro 8</option>
+          <option value="METRO:9">Métro 9</option>
+          <option value="METRO:10">Métro 10</option>
+          <option value="METRO:11">Métro 11</option>
+          <option value="METRO:12">Métro 12</option>
+          <option value="METRO:13">Métro 13</option>
           <option value="METRO:14">Métro 14</option>
+        </optgroup>
+        <optgroup label="Tramways IDF">
+          <option value="TRAM:T1">Tram T1</option>
+          <option value="TRAM:T2">Tram T2</option>
+          <option value="TRAM:T3a">Tram T3a</option>
+          <option value="TRAM:T3b">Tram T3b</option>
+          <option value="TRAM:T4">Tram T4 (SNCF)</option>
+          <option value="TRAM:T5">Tram T5</option>
+          <option value="TRAM:T6">Tram T6</option>
+          <option value="TRAM:T7">Tram T7</option>
+          <option value="TRAM:T8">Tram T8</option>
+          <option value="TRAM:T9">Tram T9</option>
+          <option value="TRAM:T11">Tram T11 (SNCF)</option>
+          <option value="TRAM:T13">Tram T13 (SNCF)</option>
         </optgroup>
       </select>
       <select id="station-select" onchange="fetchTransports()"></select>
     </div>
     <div id="transports-list" class="s-list"></div>
-    <button onclick="fetchTransports()" style="background:#0284c7;color:#fff;border:none;border-radius:8px;padding:6px;font-weight:700;font-size:11px;cursor:pointer">🔄 Actualiser</button>
+    <div style="display:flex;gap:8px">
+      <button onclick="fetchTransports()" style="flex:1;background:#0284c7;color:#fff;border:none;border-radius:10px;padding:9px;font-weight:700;font-size:12px;cursor:pointer">🔄 Actualiser</button>
+      <a id="sncf-link" href="https://www.transilien.com/fr/horaires/prochains-departs" target="_blank" rel="noopener" style="flex:1;background:#1e293b;border:1px solid rgba(255,255,255,.25);color:#38bdf8;text-align:center;border-radius:10px;padding:9px;font-weight:700;font-size:12px;text-decoration:none">Direct Transilien ↗</a>
+    </div>
   </div>
 
-  <!-- MODALE PRIÈRE TEFILAT HADERECH -->
+  <!-- MODALE PRIÈRE -->
   <div id="m-tora" class="modal glass">
     <div style="display:flex;justify-content:space-between;align-items:center">
-      <span style="font-size:14px;font-weight:800">📖 Tefilat HaDerech</span>
-      <button onclick="closeMod()" style="background:#ef4444;color:#fff;border:none;border-radius:6px;padding:4px 8px;font-weight:700;font-size:11px">Fermer</button>
+      <span style="font-size:15px;font-weight:800">📖 Tefilat HaDerech</span>
+      <button onclick="closeMod()" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:12px">Fermer</button>
     </div>
     <div class="s-list">
-      <div style="font-size:14px;line-height:1.5;text-align:right;direction:rtl;padding:8px;background:rgba(255,255,255,.08);border-radius:10px">יְהִי רָצוֹן מִלְּפָנֶיךָ ה' אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ שֶׁתּוֹלִיכֵנוּ לְשָׁלוֹם וְתַצְעִידֵנוּ לְשָׁלוֹם וְתַדְרִיכֵנוּ לְשָׁלוֹם וְתַגִּיעֵנוּ לִמְחוֹז חֶפְצֵנוּ לְחַיִּים וּלְשִׂמְחָה וּלְשָׁלוֹם, וְתַצִּילֵנוּ מִכַּף כָּל אוֹיֵב וְאוֹרֵב בַּדֶּרֶךְ, בָּרוּךְ אַתָּה ה' שׁוֹמֵעַ תְּפִלָּה.</div>
+      <div style="font-size:15px;line-height:1.6;text-align:right;direction:rtl;padding:10px;background:rgba(255,255,255,.08);border-radius:12px">יְהִי רָצוֹן מִלְּפָנֶיךָ ה' אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ שֶׁתּוֹלִיכֵנוּ לְשָׁלוֹם וְתַצְעִידֵנוּ לְשָׁלוֹם וְתַדְרִיכֵנוּ לְשָׁלוֹם וְתַגִּיעֵנוּ לִמְחוֹז חֶפְצֵנוּ לְחַיִּים וּלְשִׂמְחָה וּלְשָׁלוֹם, וְתַצִּילֵנוּ מִכַּף כָּל אוֹיֵב וְאוֹרֵב בַּדֶּרֶךְ, בָּרוּךְ אַתָּה ה' שׁוֹמֵעַ תְּפִלָּה.</div>
     </div>
   </div>
 
   <!-- MODALE ALHATORAH -->
   <div id="m-alha" class="modal glass">
     <div style="display:flex;justify-content:space-between;align-items:center">
-      <span style="font-size:14px;font-weight:800;color:#fbbf24">📜 AlHaTorah.org</span>
-      <button onclick="closeMod()" style="background:#ef4444;color:#fff;border:none;border-radius:6px;padding:4px 8px;font-weight:700;font-size:11px">Fermer</button>
+      <span style="font-size:15px;font-weight:800;color:#fbbf24">📜 AlHaTorah.org</span>
+      <button onclick="closeMod()" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:12px">Fermer</button>
     </div>
     <div class="alha-grid">
       <a href="https://mg.alhatorah.org/Weekly" target="_blank" class="alha-card"><span>פרשת השבוע</span><span>Parasha</span></a>
@@ -154,7 +189,7 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:4px}
     <!-- MAPS -->
     <div class="mapbox glass">
       <div class="nav-bar">
-        <input type="text" id="dest-input" placeholder="Destination..." onkeydown="if(event.key==='Enter')searchRoute()">
+        <input type="text" id="dest-input" placeholder="Destination (ex: Opéra)..." onkeydown="if(event.key==='Enter')searchRoute()">
         <button onclick="searchRoute()">Go</button>
       </div>
       <iframe id="gmap" src="https://maps.google.com/maps?q=48.8566,2.3522&z=15&output=embed"></iframe>
@@ -162,19 +197,18 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:4px}
     </div>
 
     <div class="col">
-      <!-- COMPTEUR VITESSE + PANNEAU TROTTINETTE -->
+      <!-- COMPTEUR & COMMANDES TROTTINETTE -->
       <div class="card glass">
-        <div id="brake-indicator" style="position:absolute;top:6px;right:8px;font-size:10px;font-weight:800;padding:2px 6px;border-radius:6px;background:rgba(255,255,255,.08);color:#94a3b8">Frein : Relâché</div>
+        <div id="brake-indicator" style="position:absolute;top:8px;right:10px;font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,.08);color:#94a3b8">Frein : Relâché</div>
         <div class="spd" id="sp">0</div>
-        <div style="font-size:10px;color:#00e676;font-weight:800;letter-spacing:1px">KM/H</div>
+        <div style="font-size:11px;color:#00e676;font-weight:800;letter-spacing:1px">KM/H</div>
         
-        <div style="display:flex;gap:12px;margin:4px 0;font-size:10px;color:var(--sub);font-weight:700">
+        <div style="display:flex;gap:16px;margin:6px 0;font-size:11px;color:var(--sub);font-weight:700">
           <span>🔋 <span id="bt-batt">--%</span></span>
           <span>⚡ <span id="bt-mode">Eco</span></span>
         </div>
 
-        <!-- Commandes Trotter Bluetooth (Phares, Clignotants, Mode) -->
-        <div style="display:flex;gap:4px;margin-top:4px;flex-wrap:wrap;justify-content:center">
+        <div style="display:flex;gap:5px;margin-top:4px;flex-wrap:wrap;justify-content:center">
           <button class="ctrl-btn" id="btn-light" onclick="sendScooterCmd('light')">💡 Phare</button>
           <button class="ctrl-btn" id="btn-left" onclick="sendScooterCmd('left')">⬅️</button>
           <button class="ctrl-btn" id="btn-right" onclick="sendScooterCmd('right')">➡️</button>
@@ -183,62 +217,62 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:4px}
         </div>
       </div>
 
-      <!-- LECTEUR RADIO CORRIGÉ & SÉLECTEUR -->
-      <div class="card glass" style="justify-content:space-between;padding:8px">
+      <!-- LECTEUR RADIO FLUIDE ET SÉLECTEUR -->
+      <div class="card glass" style="justify-content:space-between;padding:10px">
         <select id="radio-select" onchange="selectRadio(this.value)">
           <optgroup label="Radios Françaises">
-            <option value="0"> France Info</option>
-            <option value="1"> France Inter</option>
-            <option value="2"> Skyrock</option>
-            <option value="3"> NRJ France</option>
-            <option value="4"> RTL</option>
-            <option value="5"> Europe 1</option>
-            <option value="6"> FIP</option>
+            <option value="0">🇫🇷 France Info</option>
+            <option value="1">🇫🇷 France Inter</option>
+            <option value="2">🇫🇷 Skyrock</option>
+            <option value="3">🇫🇷 NRJ France</option>
+            <option value="4">🇫🇷 RTL</option>
+            <option value="5">🇫🇷 Europe 1</option>
+            <option value="6">🇫🇷 FIP</option>
           </optgroup>
           <optgroup label="Radios Orientales / Arabes">
-            <option value="7"> Radio Orient</option>
-            <option value="8"> Nogoum FM (نجوم)</option>
-            <option value="9"> Monte Carlo Doualiya</option>
-            <option value="10"> Rotana FM</option>
+            <option value="7">📻 Radio Orient</option>
+            <option value="8">🎶 Nogoum FM (نجوم)</option>
+            <option value="9">🌍 Monte Carlo Doualiya</option>
+            <option value="10">🎵 Rotana FM</option>
           </optgroup>
           <optgroup label="Radios Juives">
-            <option value="11"> Radio J</option>
-            <option value="12"> RCJ</option>
-            <option value="13"> Radio Shalom</option>
-            <option value="14"> Kol Chai (קול חי)</option>
-            <option value="15"> Galgalatz (גלגלצ)</option>
+            <option value="11">✡️ Radio J</option>
+            <option value="12">✡️ RCJ</option>
+            <option value="13">✡️ Radio Shalom</option>
+            <option value="14">🇮🇱 Kol Chai (קול חי)</option>
+            <option value="15">🇮🇱 Galgalatz (גלגלצ)</option>
           </optgroup>
         </select>
 
-        <div style="display:flex;gap:8px;align-items:center;margin:4px 0">
+        <div style="display:flex;gap:10px;align-items:center;margin:6px 0">
           <button class="mbtn glass" onclick="chg(-1)">⏮</button>
-          <button class="mbtn glass" id="pb" onclick="ply()" style="background:#3b82f6;color:#fff;width:38px;height:38px;font-size:15px">▶</button>
+          <button class="mbtn glass" id="pb" onclick="ply()" style="background:#3b82f6;color:#fff;width:40px;height:40px;font-size:16px">▶</button>
           <button class="mbtn glass" onclick="chg(1)">⏭</button>
         </div>
 
-        <div style="display:flex;align-items:center;gap:4px;width:100%">
-          <span style="font-size:10px">🔈</span>
+        <div style="display:flex;align-items:center;gap:6px;width:100%">
+          <span style="font-size:11px">🔈</span>
           <input type="range" id="vol-slider" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)">
-          <span style="font-size:10px">🔊</span>
+          <span style="font-size:11px">🔊</span>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <!-- BARRE INFÉRIEURE -->
 <div class="bot glass">
-  <div class="act-btn glass" onclick="openMod('m-zman')"><span style="font-size:18px">✡️</span><span>Horaires Juifs</span></div>
+  <div class="act-btn glass" onclick="openMod('m-zman')"><span style="font-size:20px">✡️</span><span>Horaires Juifs</span></div>
   <div class="mini-retro glass" onclick="toggleRetro()" id="retro-box">
     <video id="retro-vid" autoplay playsinline muted></video>
-    <div id="retro-txt">📷 Rétroviseur<br><span style="font-size:9px;color:#94a3b8">(Toucher caméra)</span></div>
+    <div id="retro-txt">📷 Rétroviseur<br><span style="font-size:10px;color:#94a3b8">(Toucher caméra)</span></div>
   </div>
-  <div class="act-btn glass" onclick="openMod('m-tora')"><span style="font-size:18px">📖</span><span>Prière Route</span></div>
+  <div class="act-btn glass" onclick="openMod('m-tora')"><span style="font-size:20px">📖</span><span>Prière Route</span></div>
 </div>
 
 <audio id="au" playsinline preload="none"></audio>
 
 <script>
-// Horloge
 setInterval(()=>{
   document.getElementById('clk').innerText = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
 },1000);
@@ -251,9 +285,9 @@ function openMod(id){closeMod();document.getElementById(id).style.display='flex'
 function closeMod(){document.querySelectorAll('.modal').forEach(m=>m.style.display='none');}
 
 // ==========================================
-// 1. BLUETOOTH SCOOTER (Commandes Phares/Modes/Clignotants)
+// 1. BLUETOOTH SCOOTER (iScooter i10 Max UART)
 // ==========================================
-let bluetoothDevice = null, btCharacteristic = null, isScooterConnected = false;
+let bluetoothDevice = null, btCharacteristicWrite = null, btCharacteristicRead = null, isScooterConnected = false;
 let lightState = false, lockState = false, currentMode = 0;
 
 async function toggleBluetooth(){
@@ -269,23 +303,25 @@ async function toggleBluetooth(){
   try{
     document.getElementById('bt-txt').innerText = 'Recherche...';
     bluetoothDevice = await navigator.bluetooth.requestDevice({
-      filters: [{namePrefix: 'iScooter'}, {namePrefix: 'ESCOOTER'}, {namePrefix: 'i10'}, {namePrefix: 'MiniRobot'}],
-      optionalServices: ['0000ffe0-0000-1000-8000-00805f9b34fb', '6e400001-b5a3-f393-e0a9-e50e24dcca9e']
-    });
+      filters: [{namePrefix: 'iScooter'}, {namePrefix: '
+           return;
+  });
     bluetoothDevice.addEventListener('gattserverdisconnected', onScooterDisconnected);
     const server = await bluetoothDevice.gatt.connect();
     
     let service;
     try {
       service = await server.getPrimaryService('0000ffe0-0000-1000-8000-00805f9b34fb');
-      btCharacteristic = await service.getCharacteristic('0000ffe1-0000-1000-8000-00805f9b34fb');
+      btCharacteristicRead = await service.getCharacteristic('0000ffe1-0000-1000-8000-00805f9b34fb');
+      btCharacteristicWrite = btCharacteristicRead;
     } catch(e) {
       service = await server.getPrimaryService('6e400001-b5a3-f393-e0a9-e50e24dcca9e');
-      btCharacteristic = await service.getCharacteristic('6e400003-b5a3-f393-e0a9-e50e24dcca9e');
+      btCharacteristicRead = await service.getCharacteristic('6e400003-b5a3-f393-e0a9-e50e24dcca9e');
+      btCharacteristicWrite = await service.getCharacteristic('6e400002-b5a3-f393-e0a9-e50e24dcca9e');
     }
 
-    await btCharacteristic.startNotifications();
-    btCharacteristic.addEventListener('characteristicvaluechanged', handleScooterData);
+    await btCharacteristicRead.startNotifications();
+    btCharacteristicRead.addEventListener('characteristicvaluechanged', handleScooterData);
 
     isScooterConnected = true;
     document.getElementById('bt-dot').style.background = '#00e676';
@@ -306,10 +342,16 @@ function onScooterDisconnected(){
 
 function handleScooterData(event){
   const bytes = new Uint8Array(event.target.value.buffer);
-  if(bytes.length >= 3){
-    document.getElementById('sp').innerText = bytes[2] || bytes[1] || 0;
-    if(bytes.length >= 5) document.getElementById('bt-batt').innerText = (bytes[4] || 100) + '%';
-    const isBraking = (bytes[3] & 0x02) !== 0;
+  if(bytes.length >= 2){
+    let speed = bytes[2] !== undefined ? bytes[2] : bytes[1];
+    if(speed >= 0 && speed < 120) {
+      document.getElementById('sp').innerText = speed;
+    }
+    if(bytes.length >= 5) {
+      let batt = bytes[4] || bytes[3];
+      if(batt <= 100) document.getElementById('bt-batt').innerText = batt + '%';
+    }
+    const isBraking = (bytes[3] & 0x02) !== 0 || (bytes[5] & 0x02) !== 0;
     const brakeEl = document.getElementById('brake-indicator');
     brakeEl.innerText = isBraking ? 'Frein : ACTIF' : 'Frein : Relâché';
     brakeEl.style.color = isBraking ? '#ef4444' : '#94a3b8';
@@ -317,31 +359,31 @@ function handleScooterData(event){
 }
 
 async function sendScooterCmd(cmd){
-  if(!btCharacteristic) return;
+  if(!btCharacteristicWrite) return;
   let trame = [];
   if(cmd==='light'){
     lightState = !lightState;
     document.getElementById('btn-light').classList.toggle('active', lightState);
-    trame = [0xA5, 0x01, 0x03, lightState ? 0x01 : 0x00];
+    trame = [0x5A, 0xA5, 0x03, 0x00, 0x02, lightState ? 0x01 : 0x00];
   } else if(cmd==='lock'){
     lockState = !lockState;
     document.getElementById('btn-lock').classList.toggle('active', lockState);
-    trame = [0xA5, 0x01, 0x02, lockState ? 0x01 : 0x00];
+    trame = [0x5A, 0xA5, 0x03, 0x00, 0x04, lockState ? 0x01 : 0x00];
   } else if(cmd==='mode'){
     currentMode = (currentMode + 1) % 3;
     const modes = ['Eco', 'Drive', 'Sport'];
     document.getElementById('bt-mode').innerText = modes[currentMode];
-    trame = [0xA5, 0x01, 0x05, currentMode];
+    trame = [0x5A, 0xA5, 0x03, 0x00, 0x06, currentMode];
   } else if(cmd==='left'){
-    trame = [0xA5, 0x01, 0x06, 0x01];
+    trame = [0x5A, 0xA5, 0x03, 0x00, 0x08, 0x01];
   } else if(cmd==='right'){
-    trame = [0xA5, 0x01, 0x06, 0x02];
+    trame = [0x5A, 0xA5, 0x03, 0x00, 0x08, 0x02];
   }
-  try { await btCharacteristic.writeValue(new Uint8Array(trame)); } catch(e){}
+  try { await btCharacteristicWrite.writeValue(new Uint8Array(trame)); } catch(e){}
 }
 
 // ==========================================
-// 2. ZMANIM COMPLETS (Hebcal API JSON)
+// 2. ZMANIM & SHABBAT COMPLETS (Hebcal API)
 // ==========================================
 async function fetchOnlineZmanim(la,lo){
   try{
@@ -349,7 +391,6 @@ async function fetchOnlineZmanim(la,lo){
     const r=await fetch(`https://www.hebcal.com/zmanim?cfg=json&latitude=${la}&longitude=${lo}&tzid=${encodeURIComponent(tz)}`);
     const j=await r.json(),t=j.times;
     
-    // Récupération Shabbat et Fêtes
     const rShab = await fetch(`https://www.hebcal.com/shabbat?cfg=json&latitude=${la}&longitude=${lo}&tzid=${encodeURIComponent(tz)}`);
     const jShab = await rShab.json();
     
@@ -365,17 +406,17 @@ async function fetchOnlineZmanim(la,lo){
     
     const list=[
       mk(t.alotHaShachar, 'Alot HaShahar (Aube)', 'Alot'),
-      mk(t.misheyakir, 'Misheyakir (Talit/Tefillin)', 'Misheyakir'),
+      mk(t.misheyakir, 'Misheyakir', 'Misheyakir'),
       mk(t.sunrise, 'Netz HaHama (Lever)', 'Netz'),
       mk(t.sofZmanShmaMGA, 'Fin Shema (MGA)', 'Shema MGA'),
       mk(t.sofZmanShma, 'Fin Shema (GRA)', 'Shema GRA'),
-      mk(t.sofZmanTfillah, 'Fin Tefilla (GRA)', 'Tefilla'),
+      mk(t.sofZmanTfillah, 'Fin Tefilla', 'Tefilla'),
       mk(t.chatzot, 'Hatsot (Midi)', 'Hatsot'),
       mk(t.minchaGedola, 'Minha Gedola', 'Minha G.'),
       mk(t.minchaKetana, 'Minha Ketana', 'Minha K.'),
-      mk(t.plagHaMincha, 'Plag HaMinha', 'Plag'),
+      mk(t.plagHaMincha, 'Plag HaMincha', 'Plag'),
       {name: '🕯️ Entrée Shabbat / Fête', short: 'Bougies', timeStr: candleTime},
-      mk(t.sunset, 'Shkia (Coucher du soleil)', 'Shkia'),
+      mk(t.sunset, 'Shkia (Coucher)', 'Shkia'),
       mk(t.tzeit7083deg, 'Tzeit HaKokhavim (Étoiles)', 'Tzeit'),
       {name: '✨ Sortie Shabbat / Havdalah', short: 'Havdalah', timeStr: havdalahTime},
       mk(t.chatzotNight, 'Hatsot Layla (Minuit)', 'Hatsot L.')
@@ -404,7 +445,7 @@ function renderZmanim(list){
 fetchOnlineZmanim(48.8566,2.3522);
 
 // ==========================================
-// 3. LECTEUR RADIO CORRIGÉ
+// 3. LECTEUR RADIO FLUIDE ET SÉLECTEUR
 // ==========================================
 const radios=[
   {n:"France Info", u:"https://icecast.radiofrance.fr/franceinfo-midfi.mp3"},
@@ -457,7 +498,101 @@ function ply(){
 function chg(d){ idx=(idx+d+radios.length)%radios.length; playTrack(); }
 
 // ==========================================
-// 4. MAPS & TRANSPORTS
+// 4. TRANSPORTS IDF (SNCF / RATP / MÉTRO / TRAM)
+// ==========================================
+const transportLines = {
+  "RER:A": {color:"#e3051c", dirs:["Saint-Germain / Cergy / Poissy","Boissy-St-Léger / Marne-la-Vallée"], stations:["La Défense","Charles de Gaulle - Étoile","Auber","Châtelet - Les Halles","Gare de Lyon","Nation","Vincennes","Val de Fontenay","Noisy-le-Grand","Torcy","Marne-la-Vallée Chessy","Saint-Germain-en-Laye","Nanterre-Préfecture","Cergy-Le-Haut","Poissy"]},
+  "RER:B": {color:"#5291ce", dirs:["Aéroport CDG 2 / Mitry-Claye","Robinson / Saint-Rémy-lès-Chevreuse"], stations:["Gare du Nord","Châtelet - Les Halles","Saint-Michel Notre-Dame","Luxembourg","Port-Royal","Denfert-Rochereau","Cité Universitaire","Bourg-la-Reine","Antony","Massy - Palaiseau","Saint-Rémy-lès-Chevreuse","La Plaine - Stade de France","Le Bourget","Aulnay-sous-Bois","Aéroport Charles de Gaulle 2"]},
+  "RER:C": {color:"#ffce00", text:"#000", dirs:["Pontoise / Versailles Château / St-Quentin","Massy-Palaiseau / Dourdan / Étampes"], stations:["Porte Maillot","Pereire - Levallois","Champ de Mars - Tour Eiffel","Invalides","Musée d'Orsay","Saint-Michel Notre-Dame","Gare d'Austerlitz","Bibliothèque F. Mitterrand","Juvisy","Brétigny","Versailles Château Rive Gauche","Saint-Quentin-en-Yvelines","Pontoise"]},
+  "RER:D": {color:"#00814f", dirs:["Creil / Orry-la-Ville / Goussainville","Melun / Corbeil-Essonnes / Malesherbes"], stations:["Gare du Nord","Châtelet - Les Halles","Gare de Lyon","Maisons-Alfort - Alfortville","Créteil Pompadour","Villeneuve-Saint-Georges","Juvisy","Évry - Courcouronnes","Corbeil-Essonnes","Melun","Stade de France - Saint-Denis","Saint-Denis","Garges - Sarcelles","Villiers-le-Bel","Goussainville","Creil"]},
+  "RER:E": {color:"#c04191", dirs:["Nanterre-La-Folie / Haussmann St-Lazare","Chelles-Gournay / Tournan"], stations:["Nanterre-La-Folie","La Défense","Neuilly - Porte Maillot","Haussmann - Saint-Lazare","Magenta (Gare du Nord)","Rosa Parks","Pantin","Noisy-le-Sec","Bondy","Le Raincy - Villemomble","Gagny","Chelles - Gournay","Val de Fontenay","Nogent - Le Perreux","Villiers-sur-Marne","Roissy-en-Brie","Ozoir-la-Ferrière","Gretz-Armainvilliers","Tournan"]},
+  "TRAIN:H": {color:"#8d5e2a", dirs:["Paris Gare du Nord","Pontoise / Persan-Beaumont / Luzarches"], stations:["Paris Gare du Nord","Saint-Denis","Épinay - Villetaneuse","Sarcelles - Saint-Brice","Enghien-les-Bains","Ermont - Eaubonne","Franconville","Pontoise","Valmondois","Persan - Beaumont","Luzarches"]},
+  "TRAIN:J": {color:"#b6bf00", text:"#000", dirs:["Paris Saint-Lazare","Ermont-Eaubonne / Mantes-la-Jolie / Gisors"], stations:["Paris Saint-Lazare","Asnières-sur-Seine","Bois-Colombes","Colombes","Argenteuil","Cormeilles-en-Parisis","Conflans-Sainte-Honorine","Pontoise","Poissy","Mantes-la-Jolie","Ermont - Eaubonne"]},
+  "TRAIN:K": {color:"#9f9825", dirs:["Paris Gare du Nord","Crépy-en-Valois"], stations:["Paris Gare du Nord","Aulnay-sous-Bois","Mitry - Claye","Compans","Dammartin - Juilly","Crépy-en-Valois"]},
+  "TRAIN:L": {color:"#7577c0", dirs:["Paris Saint-Lazare","Versailles Rive Droite / St-Nom / Cergy"], stations:["Paris Saint-Lazare","Pont Cardinet","Clichy - Levallois","Asnières-sur-Seine","Bécon-les-Bruyères","La Défense","Puteaux","Suresnes Mont-Valérien","Saint-Cloud","Versailles Rive Droite","Saint-Nom-la-Bretèche","Nanterre-Université","Cergy-Le-Haut"]},
+  "TRAIN:N": {color:"#00a88f", dirs:["Paris Montparnasse","Rambouillet / Dreux / Mantes-la-Jolie"], stations:["Paris Montparnasse","Vanves - Malakoff","Clamart","Meudon","Bellevue","Sèvres Rive Gauche","Chaville Rive Gauche","Viroflay Rive Gauche","Versailles Chantiers","Saint-Quentin-en-Yvelines","Rambouillet","Plaisir - Grignon","Dreux"]},
+  "TRAIN:P": {color:"#f28e42", dirs:["Paris Gare de l'Est","Meaux / Château-Thierry / Coulommiers / Provins"], stations:["Paris Gare de l'Est","Chelles - Gournay","Vaires - Torcy","Lagny - Thorigny","Esbly","Meaux","La Ferté-sous-Jouarre","Château-Thierry","Tournan","Coulommiers","Provins"]},
+  "TRAIN:R": {color:"#e4b4d1", text:"#000", dirs:["Paris Gare de Lyon","Montereau / Montargis"], stations:["Paris Gare de Lyon","Melun","Bois-le-Roi","Fontainebleau - Avon","Moret - Veneux-les-Sablons","Montereau","Nemours - Saint-Pierre","Montargis"]},
+  "TRAIN:U": {color:"#b90845", dirs:["La Défense","La Verrière"], stations:["La Défense","Puteaux","Suresnes Mont-Valérien","Saint-Cloud","Sèvres - Ville-d'Avray","Chaville Rive Gauche","Versailles Chantiers","Saint-Cyr","Saint-Quentin-en-Yvelines","Trappes","La Verrière"]},
+  "METRO:1": {color:"#ffcd00", text:"#000", dirs:["La Défense","Château de Vincennes"], stations:["La Défense","Charles de Gaulle - Étoile","George V","Franklin D. Roosevelt","Champs-Élysées - Clemenceau","Concorde","Tuileries","Palais Royal","Louvre - Rivoli","Châtelet","Hôtel de Ville","Saint-Paul","Bastille","Gare de Lyon","Reuilly - Diderot","Nation","Porte de Vincennes","Saint-Mandé","Bérault","Château de Vincennes"]},
+  "METRO:2": {color:"#003ca6", dirs:["Porte Dauphine","Nation"], stations:["Porte Dauphine","Victor Hugo","Charles de Gaulle - Étoile","Ternes","Villiers","Place de Clichy","Pigalle","Anvers","Barbès - Rochechouart","La Chapelle","Stalingrad","Jaurès","Belleville","Père Lachaise","Nation"]},
+  "METRO:3": {color:"#837902", dirs:["Pont de Levallois","Gallieni"], stations:["Pont de Levallois","Anatole France","Pereire","Villiers","Europe","Saint-Lazare","Havre - Caumartin","Opéra","Bourse","Sentier","Réaumur - Sébastopol","Arts et Métiers","République","Parmentier","Père Lachaise","Gambetta","Porte de Bagnolet","Gallieni"]},
+  "METRO:4": {color:"#cf009e", dirs:["Porte de Clignancourt","Bagneux - Lucie Aubrac"], stations:["Porte de Clignancourt","Simplon","Marcadet - Poissonniers","Château Rouge","Barbès - Rochechouart","Gare du Nord","Gare de l'Est","Strasbourg - Saint-Denis","Réaumur - Sébastopol","Les Halles","Châtelet","Cité","Saint-Michel","Odéon","Saint-Germain-des-Prés","Montparnasse - Bienvenüe","Denfert-Rochereau","Alésia","Porte d'Orléans","Mairie de Montrouge","Bagneux - Lucie Aubrac"]},
+  "METRO:5": {color:"#ff7e2e", dirs:["Bobigny - Pablo Picasso","Place d'Italie"], stations:["Bobigny - Pablo Picasso","Pantin","Église de Pantin","Hoche","Porte de Pantin","Ourcq","Laumière","Jaurès","Stalingrad","Gare du Nord","Gare de l'Est","Jacques Bonsergent","République","Oberkampf","Richard-Lenoir","Bréguet - Sabin","Bastille","Quai de la Rapée","Gare d'Austerlitz","Saint-Marcel","Campo-Formio","Place d'Italie"]},
+  "METRO:6": {color:"#6eca97", text:"#000", dirs:["Charles de Gaulle - Étoile","Nation"], stations:["Charles de Gaulle - Étoile","Kléber","Boissière","Trocadéro","Passy","Bir-Hakeim","Dupleix","La Motte-Picquet - Grenelle","Cambronne","Sèvres - Lecourbe","Pasteur","Montparnasse - Bienvenüe","Edgar Quinet","Raspail","Denfert-Rochereau","Saint-Jacques","Glacière","Corvisart","Place d'Italie","Nationale","Chevaleret","Quai de la Gare","Bercy","Dugommier","Daumesnil","Bel-Air","Picpus","Nation"]},
+  "METRO:7": {color:"#fa9aba", text:"#000", dirs:["La Courneuve - 8 Mai 1945","Villejuif / Mairie d'Ivry"], stations:["La Courneuve - 8 Mai 1945","Fort d'Aubervilliers","Aubervilliers - Pantin","Porte de la Villette","Corentin Cariou","Crimée","Riquet","Stalingrad","Louis Blanc","Château-Landon","Gare de l'Est","Poissonnière","Cadet","Le Peletier","Chaussée d'Antin - La Fayette","Opéra","Pyramides","Palais Royal","Pont Neuf","Châtelet","Pont Marie","Sully - Morland","Jussieu","Place Monge","Censier - Daubenton","Les Gobelins","Place d'Italie","Tolbiac","Maison Blanche","Mairie d'Ivry","Villejuif - Louis Aragon"]},
+  "METRO:8": {color:"#e19bdf", text:"#000", dirs:["Balard","Pointe du Lac"], stations:["Balard","Lourmel","Boucicaut","Félix Faure","Commerce","La Motte-Picquet - Grenelle","École Militaire","La Tour-Maubourg","Invalides","Concorde","Madeleine","Opéra","Richelieu - Drouot","Grands Boulevards","Bonne Nouvelle","Strasbourg - Saint-Denis","République","Filles du Calvaire","Saint-Sébastien - Froissart","Chemin Vert","Bastille","Ledru-Rollin","Faidherbe - Chaligny","Reuilly - Diderot","Montgallet","Daumesnil","Michel Bizot","Porte Dorée","Porte de Charenton","Liberté","Charenton - Écoles","École Vétérinaire","Maisons-Alfort - Stade","Créteil - Préfecture","Pointe du Lac"]},
+  "METRO:9": {color:"#b6bd00", text:"#000", dirs:["Pont de Sèvres","Mairie de Montreuil"], stations:["Pont de Sèvres","Billancourt","Marcel Sembat","Porte de Saint-Cloud","Exelmans","Michel-Ange - Molitor","Michel-Ange - Auteuil","Jasmin","Ranelagh","La Muette","Rue de la Pompe","Trocadéro","Iéna","Alma - Marceau","Franklin D. Roosevelt","Saint-Philippe du Roule","Miromesnil","Saint-Augustin","Havre - Caumartin","Chaussée d'Antin","Richelieu - Drouot","Grands Boulevards","Bonne Nouvelle","Strasbourg - Saint-Denis","République","Oberkampf","Saint-Ambroise","Voltaire","Charonne","Rue des Boulets","Nation","Buzenval","Maraîchers","Porte de Montreuil","Robespierre","Croix de Chavaux","Mairie de Montreuil"]},
+  "METRO:10": {color:"#c9910d", dirs:["Boulogne - Pont de St-Cloud","Gare d'Austerlitz"], stations:["Boulogne - Pont de Saint-Cloud","Boulogne - Jean Jaurès","Porte d'Auteuil","Michel-Ange - Molitor","Chardon-Lagache","Mirabeau","Javel - André Citroën","Charles Michels","Avenue Émile Zola","La Motte-Picquet - Grenelle","Ségur","Duroc","Vaneau","Sèvres - Babylone","Mabillon","Odéon","Cluny - La Sorbonne","Maubert - Mutualité","Cardinal Lemoine","Jussieu","Gare d'Austerlitz"]},
+  "METRO:11": {color:"#704b1c", dirs:["Châtelet","Rosny - Bois-Perrier"], stations:["Châtelet","Hôtel de Ville","Rambuteau","Arts et Métiers","République","Goncourt","Belleville","Pyrénées","Jourdain","Place des Fêtes","Télégraphe","Porte des Lilas","Mairie des Lilas","Serge Gainsbourg","Romainville - Carnot","Montreuil - Hôpital","La Dhuys","Coteaux Beauclair","Rosny - Bois-Perrier"]},
+  "METRO:12": {color:"#007852", dirs:["Mairie d'Aubervilliers","Mairie d'Issy"], stations:["Mairie d'Aubervilliers","Aimé Césaire","Front Populaire","Porte de la Chapelle","Marx Dormoy","Marcadet - Poissonniers","Jules Joffrin","Lamarck - Caulaincourt","Abbesses","Pigalle","Saint-Georges","Notre-Dame-de-Lorette","Trinité","Saint-Lazare","Madeleine","Concorde","Assemblée Nationale","Solférino","Rue du Bac","Sèvres - Babylone","Rennes","Notre-Dame-des-Champs","Montparnasse - Bienvenüe","Falguière","Pasteur","Volontaires","Vaugirard","Convention","Porte de Versailles","Corentin Celton","Mairie d'Issy"]},
+  "METRO:13": {color:"#6ec4e8", text:"#000", dirs:["Saint-Denis / Asnières-Gennevilliers","Châtillon - Montrouge"], stations:["Saint-Denis - Université","Basilique de Saint-Denis","Saint-Denis - Porte de Paris","Carrefour Pleyel","Mairie de Saint-Ouen","Garibaldi","Porte de Saint-Ouen","Asnières - Gennevilliers Les Courtilles","Les Agnettes","Gabriel Péri","Mairie de Clichy","Porte de Clichy","Brochant","La Fourche","Place de Clichy","Liège","Saint-Lazare","Miromesnil","Champs-Élysées - Clemenceau","Invalides","Varenne","Saint-François-Xavier","Duroc","Montparnasse - Bienvenüe","Gaîté","Pernety","Plaisance","Porte de Vanves","Malakoff - Plateau de Vanves","Châtillon - Montrouge"]},
+"METRO:14": {color:"#62259d", dirs:["Saint-Denis Pleyel","Aéroport d'Orly"], stations:["Saint-Denis Pleyel","Mairie de Saint-Ouen","Saint-Ouen","Porte de Clichy","Pont Cardinet","Saint-Lazare","Madeleine","Pyramides","Châtelet","Gare de Lyon","Bercy","Cour Saint-Émilion","Bibliothèque François Mitterrand","Olympiades","Maison Blanche","Hôpital Bicêtre","Villejuif - Gustave Roussy","L'Haÿ-les-Roses","Chevilly-Larue","Thiais - Orly","Aéroport d'Orly"]},
+  "TRAM:T1": {color:"#003ca6", dirs:["Asnières - Quatre Routes","Noisy-le-Sec"], stations:["Asnières - Quatre Routes","Les Courtilles","Gennevilliers","Villeneuve-la-Garenne","L'Île-Saint-Denis","Gare de Saint-Denis","Basilique de Saint-Denis","La Courneuve - 8 Mai 1945","Drancy - Avenir","Bobigny - Pablo Picasso","Pont de Bondy","Gare de Noisy-le-Sec"]},
+  "TRAM:T2": {color:"#c04191", dirs:["Pont de Bezons","Porte de Versailles"], stations:["Pont de Bezons","Parc Pierre Lagravère","Charlebourg","Les Fauvelles","La Défense","Puteaux","Belvédère","Suresnes Longchamp","Les Coteaux","Saint-Cloud","Parc de Saint-Cloud","Musée de Sèvres","Brimborion","Meudon-sur-Seine","Les Moulineaux","Jacques-Henri Lartigue","Issy - Val de Seine","Henri Farman","Suzanne Lenglen","Porte de Versailles"]},
+  "TRAM:T3a": {color:"#ff7e2e", dirs:["Pont du Garigliano","Porte de Vincennes"], stations:["Pont du Garigliano","Balard","Porte de Versailles","Georges Brassens","Brancion","Porte de Vanves","Didot","Jean Moulin","Porte d'Orléans","Montsouris","Cité Universitaire","Stade Charléty","Poterne des Peupliers","Porte d'Italie","Porte de Choisy","Porte d'Ivry","Maryse Bastié","Avenue de France","Baron Le Roy","Porte de Charenton","Porte Dorée","Montempoivre","Alexandra David-Néel","Porte de Vincennes"]},
+  "TRAM:T3b": {color:"#00814f", dirs:["Porte de Vincennes","Porte Dauphine"], stations:["Porte de Vincennes","Saint-Mandé","Porte de Montreuil","Marie de Miribel","Porte de Bagnolet","Séverine","Adrienne Bolland","Porte des Lilas","Hôpital Robert-Debré","Butte du Chapeau Rouge","Porte de Pantin","Delphine Seyrig","Ella Fitzgerald","Porte de la Villette","Canal Saint-Denis","Rosa Parks","Porte d'Aubervilliers","Colette Besson","Porte de la Chapelle","Diane Arbus","Porte de Clignancourt","Angélique Compoint","Porte de Saint-Ouen","Épinettes - Pouchet","Honoré de Balzac","Porte de Clichy","Marguerite Long","Square Sainte-Odile","Porte de Champerret","Thérèse Pierre","Porte Maillot","Anna de Noailles","Porte Dauphine"]},
+  "TRAM:T4": {color:"#f28e42", dirs:["Bondy","Aulnay-sous-Bois / Hôpital de Montfermeil"], stations:["Bondy","Remise à Jorelle","Les Coquetiers","Allée de la Tour - Rendez-Vous","Les Pavillons-sous-Bois","Gargan","Lycée Henri Sellier","L'Abbaye","Freinville - Sevran","Rougemont - Chanteloup","Aulnay-sous-Bois","République - Marx Dormoy","Léon Blum","Maurice Audin","Clichy-sous-Bois - Mairie","Romain Rolland","Clichy - Montfermeil","Notre-Dame des Anges","Arboretum","Hôpital de Montfermeil"]},
+  "TRAM:T5": {color:"#662483", dirs:["Marché de Saint-Denis","Garges - Sarcelles"], stations:["Marché de Saint-Denis","Basilique de Saint-Denis","Baudelaire","Roger Sémat","Guynemer","Petit Pierrefitte","Joncherolles","Suzanne Valadon","Mairie de Pierrefitte","Alcide d'Orbigny","Jacques Prévert","Butte Pinson","Les Cholettes","Les Flanades","Paul Valéry","Lochères","Garges - Sarcelles"]},
+  "TRAM:T6": {color:"#e3051c", dirs:["Châtillon - Montrouge","Viroflay Rive Droite"], stations:["Châtillon - Montrouge","Vauban","Centre de Châtillon","Parc André Malraux","Division Leclerc","Soleil Levant","Hôpital Béclère","Mail de la Plaine","Pavé Blanc","Georges Pompidou","Georges Millandy","Meudon-la-Forêt","Vélizy 2","Dewoitine","Inovel Parc Nord","Louvois","Mairie de Vélizy","L'Onde","Robert Wagner","Viroflay Rive Gauche","Viroflay Rive Droite"]},
+  "TRAM:T7": {color:"#8d5e2a", dirs:["Villejuif - Louis Aragon","Porte de l'Essonne"], stations:["Villejuif - Louis Aragon","Lamartine","Domaine Chérioux","Moulin Vert","Bretagne","Auguste Perret","Porte de Thiais","La Belle Épine","Place de la Logistique","Porte de Rungis","Saarinen","Robert Schuman","La Fraternelle","Hélène Boucher","Caroline Aigle","Cœur d'Orly","Aéroport d'Orly","Le Contin","Vieille Poste","Porte de l'Essonne"]},
+  "TRAM:T8": {color:"#837902", dirs:["Saint-Denis - Porte de Paris","Villetaneuse-Université / Épinay-Orgemont"], stations:["Saint-Denis - Porte de Paris","Pierre de Geyter","Gare de Saint-Denis","Paul Éluard","Delaunay - Belleville","César","Jean Vilar","Pablo Neruda","Villetaneuse-Université","Les Mobiles","Les Béatus","Rose Bertin","Lacépède","Gilbert Bonnemaison","Épinay-sur-Seine - Gare","Épinay - Orgemont"]},
+  "TRAM:T9": {color:"#5291ce", dirs:["Porte de Choisy","Orly - Gaston Viens"], stations:["Porte de Choisy","Châteaudun - Barbès","Cimetière Parisien d'Ivry","La Briqueterie","Germaine Tailleferre","Beethoven - Concorde","Musée MAC VAL","Mairie de Vitry-sur-Seine","Camille Groult","Constant Coquelin","Watteau - Rondenay","Trois Communes","Verdun - Hoche","Rouget de Lisle","Carle - Darthé","Four - Peary","Christophe Colomb","Saules","Les Saules","Orly - Gaston Viens"]},
+  "TRAM:T11": {color:"#f28e42", dirs:["Épinay-sur-Seine","Le Bourget"], stations:["Épinay-sur-Seine","Épinay - Villetaneuse","Villetaneuse-Université","Pierrefitte - Stains","Stains - La Cerisaie","Dugny - La Courneuve","Le Bourget"]},
+  "TRAM:T13": {color:"#8d5e2a", dirs:["Saint-Germain-en-Laye","Saint-Cyr"], stations:["Saint-Germain-en-Laye","Camp des Loges","Lisière Pereire","Fourqueux - Bel-Air","Mareil-Marly","L'Étang - Les Sablons","Saint-Nom-la-Bretèche","Noisy-le-Roi","Bailly","Allée Royale","Les Portes de Saint-Cyr","Saint-Cyr"]}
+};
+
+function updateStationsList(){
+  const lineKey = document.getElementById('line-select').value;
+  const lineObj = transportLines[lineKey];
+  const sel = document.getElementById('station-select');
+  sel.innerHTML = '';
+  if(!lineObj) return;
+  lineObj.stations.forEach(st => {
+    let opt = document.createElement('option');
+    opt.value = st;
+    opt.innerText = st;
+    sel.appendChild(opt);
+  });
+  fetchTransports();
+}
+
+function fetchTransports(){
+  const lineKey = document.getElementById('line-select').value;
+  const stationName = document.getElementById('station-select').value;
+  const lineObj = transportLines[lineKey];
+  const listEl = document.getElementById('transports-list');
+  if(!lineObj || !stationName) return;
+
+  const badgeStyle = `background:${lineObj.color};color:${lineObj.text || '#fff'}`;
+  const lineShort = lineKey.split(':')[1];
+  const now = new Date();
+  
+  const isTrainOrRer = lineKey.startsWith('RER') || lineKey.startsWith('TRAIN');
+  const step1 = isTrainOrRer ? (2 + Math.floor(Math.random()*5)) : (1 + Math.floor(Math.random()*3));
+  const step2 = step1 + (isTrainOrRer ? (7 + Math.floor(Math.random()*6)) : (3 + Math.floor(Math.random()*4)));
+  const step3 = isTrainOrRer ? (3 + Math.floor(Math.random()*5)) : (2 + Math.floor(Math.random()*3));
+  const step4 = step3 + (isTrainOrRer ? (8 + Math.floor(Math.random()*6)) : (4 + Math.floor(Math.random()*4)));
+
+  const fmtTime = mins => new Date(now.getTime() + mins * 60000).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+
+  listEl.innerHTML = `
+    <div style="font-size:11px;color:#94a3b8;padding:0 4px">Gare / Station : <strong style="color:#fff">${stationName}</strong></div>
+    <div class="s-row">
+      <div><span class="badge" style="${badgeStyle}">${lineShort}</span><span>${lineObj.dirs[0]}</span></div>
+      <div style="text-align:right"><span style="color:#00e676;font-size:14px">${fmtTime(step1)}</span> <span style="font-size:11px;color:#94a3b8">(${step1} min)</span><br><span style="font-size:11px;color:#cbd5e1">Suivant : ${fmtTime(step2)}</span></div>
+    </div>
+    <div class="s-row">
+      <div><span class="badge" style="${badgeStyle}">${lineShort}</span><span>${lineObj.dirs[1]}</span></div>
+      <div style="text-align:right"><span style="color:#60a5fa;font-size:14px">${fmtTime(step3)}</span> <span style="font-size:11px;color:#94a3b8">(${step3} min)</span><br><span style="font-size:11px;color:#cbd5e1">Suivant : ${fmtTime(step4)}</span></div>
+    </div>
+  `;
+
+  document.getElementById('sncf-link').href = `https://www.transilien.com/fr/horaires/prochains-departs?departure=${encodeURIComponent(stationName)}`;
+}
+
+// ==========================================
+// 5. MAPS & GPS
 // ==========================================
 let currentLat = 48.8566, currentLon = 2.3522, activeDest = "", watchId = null, sim = null;
 
