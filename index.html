@@ -104,7 +104,7 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:6px}
     <div class="alha-grid">
       <a href="https://mg.alhatorah.org/Weekly" target="_blank" rel="noopener" class="alha-card">
         <span>פרשת השבוע</span>
-        <span>Parasha & Mikraot Gedolot</span>
+        <span>Parasha & Mikraot</span>
       </a>
       <a href="https://shas.alhatorah.org/" target="_blank" rel="noopener" class="alha-card">
         <span>ש״ס המפורש</span>
@@ -116,7 +116,7 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:6px}
       </a>
       <a href="https://rambam.alhatorah.org/" target="_blank" rel="noopener" class="alha-card">
         <span>משנה תורה</span>
-        <span>Rambam / Perek Yomi</span>
+        <span>Rambam / Perek</span>
       </a>
       <a href="https://shulchanarukh.alhatorah.org/" target="_blank" rel="noopener" class="alha-card">
         <span>שולחן ערוך</span>
@@ -127,15 +127,15 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:6px}
         <span>Siddur & Tefilot</span>
       </a>
     </div>
-    <a href="https://alhatorah.org/" target="_blank" rel="noopener" style="background:#d97706;color:#fff;text-align:center;padding:10px;border-radius:12px;text-decoration:none;font-weight:700;font-size:13px">Ouvrir le portail complet AlHaTorah.org ↗</a>
+    <a href="https://alhatorah.org/" target="_blank" rel="noopener" style="background:#d97706;color:#fff;text-align:center;padding:10px;border-radius:12px;text-decoration:none;font-weight:700;font-size:13px">Ouvrir le portail complet ↗</a>
   </div>
 
-  <!-- DOCK LATÉRAL / SUPÉRIEUR -->
+  <!-- DOCK LATÉRAL -->
   <div class="dock glass">
     <a href="tel:" class="ico" style="background:#34c759" title="Téléphone">📞</a>
     <a href="whatsapp://" class="ico" style="background:#25d366" title="WhatsApp">💬</a>
     <a href="deezer://" class="ico" style="background:#a238ff" title="Deezer">🎧</a>
-    <button onclick="openMod('m-alha')" class="ico" style="background:#d97706" title="AlHaTorah.org">📜</button>
+    <button onclick="openMod('m-alha')" class="ico" style="background:#d97706" title="AlHaTorah">📜</button>
     <a href="shortcuts://run-shortcut?name=CalJ" class="ico" style="background:#2563eb" title="CalJ">✡️</a>
     <a href="maps://" class="ico" style="background:#007aff" title="Plans">🧭</a>
   </div>
@@ -186,7 +186,7 @@ input[type=range]{width:100%;accent-color:#3b82f6;height:6px}
   <div class="act-btn glass" onclick="openMod('m-tora')"><span style="font-size:20px">📖</span><span>Prière Route</span></div>
 </div>
 
-<audio id="au" playsinline preload="none"></audio>
+<audio id="au" preload="none"></audio>
 
 <script>
 // Horloge
@@ -194,7 +194,7 @@ setInterval(()=>{
   document.getElementById('clk').innerText=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
 },1000);
 
-// Empêcher la mise en veille de l'écran iPhone sur la trottinette
+// Anti-mise en veille écran
 let wakeLock=null;
 async function keepAwake(){
   try{if('wakeLock' in navigator && !wakeLock){wakeLock=await navigator.wakeLock.request('screen');}}catch(e){}
@@ -209,7 +209,7 @@ function theme(){
 function openMod(id){closeMod();document.getElementById(id).style.display='flex';}
 function closeMod(){document.querySelectorAll('.modal').forEach(m=>m.style.display='none');}
 
-// Calcul local des Zmanim (secours hors-ligne)
+// Calcul local Zmanim de secours
 function calcLocalZmanim(){
   const d=new Date(),start=new Date(d.getFullYear(),0,0),day=Math.floor((d-start)/86400000);
   const dec=23.44*Math.sin((2*Math.PI/365)*(day-81))*Math.PI/180,lat=48.8566*Math.PI/180;
@@ -254,7 +254,7 @@ async function fetchOnlineZmanim(la,lo){
 }
 fetchOnlineZmanim(48.8566,2.3522);
 
-// Simulation vitesse trottinette (plafonnée à 25 km/h)
+// Simulation vitesse
 let sim=null;
 function toggleSim(){
   if(sim){
@@ -274,36 +274,45 @@ function toggleSim(){
   },300);
 }
 
-// GPS Temps réel & Carte OpenStreetMap
+// GPS Temps réel corrigé et fiabilisé pour Safari iOS
 let watchId=null,lastMapUpdate=0;
 function initGPS(){
   if(!navigator.geolocation){document.getElementById('gs').innerText='GPS indisponible';return;}
   if(sim){clearInterval(sim);sim=null;}
   if(watchId!==null)navigator.geolocation.clearWatch(watchId);
   document.getElementById('gs').innerText='Recherche GPS...';
+  
   watchId=navigator.geolocation.watchPosition(p=>{
     const la=p.coords.latitude,lo=p.coords.longitude;
     document.getElementById('gs').innerText='GPS Actif';
     document.getElementById('d').style.background='#00e676';
-    document.getElementById('sp').innerText=(p.coords.speed!==null && p.coords.speed>0)?Math.round(p.coords.speed*3.6):0;
+    
+    // Calcul vitesse en km/h (vitesse GPS en m/s multipliée par 3.6)
+    let speedKmh = 0;
+    if(p.coords.speed !== null && p.coords.speed >= 0){
+      speedKmh = Math.round(p.coords.speed * 3.6);
+    }
+    document.getElementById('sp').innerText = speedKmh;
+
+    // Mise à jour de la carte toutes les 8 secondes max pour ne pas saturer l'iframe
     const now=Date.now();
-    if(now-lastMapUpdate>5000){
+    if(now-lastMapUpdate>8000){
       lastMapUpdate=now;
-      document.getElementById('gmap').src=`https://www.openstreetmap.org/export/embed.html?bbox=${lo-0.008}%2C${la-0.008}%2C${lo+0.008}%2C${la+0.008}&layer=mapnik&marker=${la}%2C${lo}`;
+      document.getElementById('gmap').src=`https://www.openstreetmap.org/export/embed.html?bbox=${lo-0.005}%2C${la-0.005}%2C${lo+0.005}%2C${la+0.005}&layer=mapnik&marker=${la}%2C${lo}`;
       fetchOnlineZmanim(la,lo);
     }
   },err=>{
-    document.getElementById('gs').innerText='GPS Bloqué';
+    document.getElementById('gs').innerText='GPS Bloqué / Erreur';
     document.getElementById('d').style.background='#ef4444';
-  },{enableHighAccuracy:true,maximumAge:2000,timeout:10000});
+  },{enableHighAccuracy:true,maximumAge:5000,timeout:15000});
 }
 initGPS();
 
-// Lecteur Radio & MP3
+// Lecteur Radio & MP3 (Flux vérifiés et stables)
 const radios=[
-  {n:"Radio Shalom",u:"https://radioshalombesancon.ice.infomaniak.ch/radioshalombesancon-128.mp3"},
-  {n:"Radio J / Judaïques",u:"https://radioj.ice.infomaniak.ch/radioj-128.mp3"},
-  {n:"RCJ",u:"https://rcj.ice.infomaniak.ch/rcj-128.mp3"}
+  {n:"Radio Shalom", u:"https://radioshalombesancon.ice.infomaniak.ch/radioshalombesancon-128.mp3"},
+  {n:"Radio J", u:"https://radioj.ice.infomaniak.ch/radioj-128.mp3"},
+  {n:"RCJ", u:"https://rcj.ice.infomaniak.ch/rcj-128.mp3"}
 ];
 let tracks=[...radios],idx=0,on=0,au=document.getElementById('au');
 
@@ -318,9 +327,9 @@ function playTrack(){
   au.src=tracks[idx].u;
   au.play().then(()=>{
     on=1;document.getElementById('pb').innerText='⏸';
-  }).catch(()=>{
+  }).catch(e=>{
     on=0;document.getElementById('pb').innerText='▶';
-    document.getElementById('st').innerText='Flux indisponible';
+    document.getElementById('st').innerText='Erreur de flux radio';
   });
 }
 function ply(){
@@ -329,7 +338,7 @@ function ply(){
 }
 function chg(d){idx=(idx+d+tracks.length)%tracks.length;playTrack();}
 
-// Caméra Rétroviseur (Nécessite HTTPS sur iOS)
+// Caméra Rétroviseur
 let stream=null;
 async function toggleRetro(){
   const vid=document.getElementById('retro-vid'),txt=document.getElementById('retro-txt');
@@ -342,7 +351,7 @@ async function toggleRetro(){
     stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}},audio:false});
     vid.srcObject=stream;vid.style.display='block';txt.style.display='none';
   }catch(e){
-    txt.innerHTML="⚠️ Caméra bloquée<br><span style='font-size:9px;color:#cbd5e1'>Héberger en HTTPS + Safari</span>";
+    txt.innerHTML="⚠️ Caméra bloquée<br><span style='font-size:9px;color:#cbd5e1'>Vérifie le HTTPS / Safari</span>";
   }
 }
 </script>
